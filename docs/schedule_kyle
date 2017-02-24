@@ -1,11 +1,9 @@
-SenatorSim main able to take arbitrary input and redirect to console output -- Fri Feb 24 by 11:59 pm (1 hr)
+-SenatorSim main able to take arbitrary input and redirect to console output -- Fri Feb 24 by 11:59 pm (1 hr)
 
-Able to take user input to decide between choices -- Sat Feb 25 by 11:59 pm (1 hr)
+-Able to take user input to decide between choices -- Sat Feb 25 by 11:59 pm (1 hr)
 
-Option to start game -- Sat Feb 25 by 11:59 pm (2 hr)
+-Option to start game -- Sat Feb 25 by 11:59 pm (2 hr)
 
+-Interface with the district class; option to start with random district or with predefined district statistics -- Mon Feb 27 by 11:59 pm (3 hr)
 
-Interface with the district class; option to start with random district or with predefined district statistics -- Mon Feb 27 by 11:59 pm (3 hr)
-
-Interface with questions; user can view a question to get more information and can also select a decision to make Wed Mar 1 by 11:59 pm (5 hr)
-
+-Interface with questions; user can view a question to get more information and can also select a decision to make Wed Mar 1 by 11:59 pm (5 hr)
