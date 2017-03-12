@@ -1,18 +1,18 @@
 import java.util.Scanner;
 public class SenatorSim
 {
- Scanner sc;
- 
- public SenatorSim () {
-  sc = new Scanner(System.in); //scanner for text input
- }
- 
- public static void main( String[] args)
- {
-     SenatorSim ss = new SenatorSim ();
-     ss.processCommandLoop();
-  }
-   
+    Scanner sc;
+    
+    public SenatorSim () {
+        sc = new Scanner(System.in); //scanner for text input
+    }
+    
+    public static void main( String[] args)
+    {
+        SenatorSim ss = new SenatorSim ();
+        ss.processCommandLoop();
+    }
+    
     //have the user input a number
     //if the number is a type of district, return that number
     //else return -1
@@ -26,14 +26,14 @@ public class SenatorSim
             System.exit(0);
             return -1;
         }
-            
+        
         else if (type > 0 && type < 4) {
             return type;
         }
         
         else
             return -1;
-                
+        
     }
     
     //create a district and initialize all of the fields
@@ -51,7 +51,7 @@ public class SenatorSim
         System.out.println(d.getDistrict());    //debug line
         return d;
     }
-
+    
     void processCommandLoop () {
         int districtType = getDistrictFromUser ();
         createDistrict(districtType);
