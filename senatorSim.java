@@ -54,7 +54,22 @@ public class SenatorSim
         else
             return -1;
                 
-        }
+    }
+    
+    //create a district and initialize all of the fields
+    District createDistrict (int dType) {
+        District d = new District(dType);
+        d.setName();
+        d.setPop(0);
+        d.setBudget(0);
+        d.setDeath(0);
+        System.out.println(d.getDistrict());    //debug line
+
+    }
+
+    void processCommandLoop () {
+        int districtType = getDistrictFromUser ();
+        createDistrict(districtType);
     }
     
 }
