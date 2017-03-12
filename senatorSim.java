@@ -33,4 +33,28 @@ public class SenatorSim
     System.exit(0);
     }
   }
+   
+    //have the user input a number
+    //if the number is a type of district, return that number
+    //else return -1
+    //TODO
+    //exception handling
+    int getDistrictFromUser () {
+        System.out.println("Please enter type of district you want (1-3), or 0 to exit");
+        Scanner tempScanner = new Scanner (System.in);
+        int type = tempScanner.nextInt();
+        
+        if (type == 0)
+            System.exit(0);
+        
+        else if (type > 0 && type < 4) {
+            return type;
+        }
+        
+        else
+            return -1;
+                
+        }
+    }
+    
 }
