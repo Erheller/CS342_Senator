@@ -1,4 +1,16 @@
-public class District {
+public interface District {
+  
+    void setName();
+
+    void setPop(double decision);
+
+    void setBudget(double decision);
+
+    void setDeath(double decision);
+    
+    String getDistrict();
+}
+/*public class District {
   //Right now theres only 3 criteria for a district, population, budget and death
   public int dType;
   public double pop;
@@ -75,4 +87,4 @@ public class District {
     return "District Type: " + dName + "\nPopulation: " + Double.toString(pop) + "\nBudget: " + Double.toString(budget) 
       + "\nDeaths: " + Double.toString(death);
   }
-}
+}*/
