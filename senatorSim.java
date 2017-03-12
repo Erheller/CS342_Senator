@@ -9,6 +9,9 @@ public class SenatorSim
  
  public static void main( String[] args)
  {
+     SenatorSim ss = new SenatorSim ();
+     ss.processCommandLoop();
+     /*
   int dType;
   int flag = 0;
   int gDecision = 0; //Decision that positiely affects
@@ -32,6 +35,7 @@ public class SenatorSim
     {
     System.exit(0);
     }
+      */
   }
    
     //have the user input a number
@@ -41,12 +45,14 @@ public class SenatorSim
     //exception handling
     int getDistrictFromUser () {
         System.out.println("Please enter type of district you want (1-3), or 0 to exit");
-        Scanner tempScanner = new Scanner (System.in);
-        int type = tempScanner.nextInt();
+        //Scanner tempScanner = new Scanner (System.in);
+        int type = sc.nextInt();
         
-        if (type == 0)
+        if (type == 0) {
             System.exit(0);
-        
+            return -1;
+        }
+            
         else if (type > 0 && type < 4) {
             return type;
         }
@@ -64,7 +70,7 @@ public class SenatorSim
         d.setBudget(0);
         d.setDeath(0);
         System.out.println(d.getDistrict());    //debug line
-
+        return d;
     }
 
     void processCommandLoop () {
