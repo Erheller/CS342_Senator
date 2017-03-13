@@ -25,6 +25,14 @@ public class Decision
         behavior = b;
     }
     
+    public Decision (Behavior b, Category newCat, String newDesc, int newNum, String[] newDesDesc, District newD) {
+        behavior = b;
+        setCategory(newCat);
+        setDescription(newDesc);
+        setDecisonsdisc(newNum, newDesDesc);
+        setDistrict(newD);
+    }
+    
     public Category getCategory () {
         return this.cat;
     }

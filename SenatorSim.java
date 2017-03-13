@@ -78,6 +78,7 @@ public class SenatorSim
     }
     
     void processCommandLoop () {
+        //District creation
         int districtType = getDistrictFromUser ();
         if(districtType == 1)
         {
@@ -91,6 +92,10 @@ public class SenatorSim
         {
          createDistrictCoastal(districtType);
         }
+        
+        //creating two different Decisions
+        Decision[] decisions;
+        
     }
     
 }
