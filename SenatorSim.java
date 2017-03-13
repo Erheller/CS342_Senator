@@ -2,6 +2,7 @@ import java.util.Scanner;
 public class SenatorSim
 {
     Scanner sc;
+    District d;
     
     public SenatorSim () {
         sc = new Scanner(System.in); //scanner for text input
@@ -41,7 +42,7 @@ public class SenatorSim
             return -1;
         
     }
-    
+
     //create a district and initialize all of the fields
     
     //Here I set all the pop budget and death based on the dType, this is all done in the district class.
@@ -77,24 +78,46 @@ public class SenatorSim
         return d;
     }
     
+    public String getCategoryString (Category cat) {
+        switch (cat) {
+            case Education: return "Education";
+            case Population: return "Population";
+            case Crime: return "Crime";
+            case Commerce: return "Commerce";
+            case Infrastructure: return "Infrastructure";
+        }
+        
+        return "";
+    }
+    
     void processCommandLoop () {
         //District creation
         int districtType = getDistrictFromUser ();
         if(districtType == 1)
         {
-         createDistrictUrban(districtType);
+         d = createDistrictUrban(districtType);
         }
         if(districtType == 2)
         {
-         createDistrictRural(districtType);
+         d = createDistrictRural(districtType);
         }
         if(districtType == 3)
         {
-         createDistrictCoastal(districtType);
+         d = createDistrictCoastal(districtType);
         }
         
         //creating two different Decisions
-        Decision[] decisions;
+        Decision[] decisions = new Decision[2];
+        String[] tempString = new String[2];
+        tempString[0] = "Allocate $50,000 to fund the vaccination program";
+        tempString[1] = "I have more important things to take care of";
+        
+        decisions[0] = new Decision(new DecisionPopulation(), Category.Population, "It's flu season, and many of the people in your district are unvaccinated. Will you spend funds for a free vaccination program?", 2, tempString, d);
+        tempString[0] = "Allocate $200,000 to start the road repairs";
+        tempString[1] = "The roads are fine. At least near your house.";
+        decisions[1] = new Decision(new DecisionPopulation(), Category.Infrastructure, "Many of the roads in your district are out of repair, and your office has been receiving complaints from the citizenry. Will you allocate funds to repair the roads?", 2, tempString, d);
+        
+        
         
     }
     
