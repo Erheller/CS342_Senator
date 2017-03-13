@@ -90,6 +90,16 @@ public class SenatorSim
         return "";
     }
     
+    public void printDecision (Decision d) {
+        System.out.println("  Type: " + getCategoryString(d.cat));
+        
+        System.out.println("  " + d.description);
+        for (int foo = 0; foo < d.numDecisions; foo++) {
+            System.out.println("    " + Integer.toString(foo+1) + ") " + d.decisionDesc[foo]);
+        }
+        
+    }
+    
     void processCommandLoop () {
         //District creation
         int districtType = getDistrictFromUser ();
@@ -109,14 +119,21 @@ public class SenatorSim
         //creating two different Decisions
         Decision[] decisions = new Decision[2];
         String[] tempString = new String[2];
+        String[] tempString2 = new String[2];
         tempString[0] = "Allocate $50,000 to fund the vaccination program";
         tempString[1] = "I have more important things to take care of";
         
         decisions[0] = new Decision(new DecisionPopulation(), Category.Population, "It's flu season, and many of the people in your district are unvaccinated. Will you spend funds for a free vaccination program?", 2, tempString, d);
-        tempString[0] = "Allocate $200,000 to start the road repairs";
-        tempString[1] = "The roads are fine. At least near your house.";
-        decisions[1] = new Decision(new DecisionPopulation(), Category.Infrastructure, "Many of the roads in your district are out of repair, and your office has been receiving complaints from the citizenry. Will you allocate funds to repair the roads?", 2, tempString, d);
+        tempString2[0] = "Allocate $200,000 to start the road repairs";
+        tempString2[1] = "The roads are fine. At least near your house.";
+        decisions[1] = new Decision(new DecisionPopulation(), Category.Infrastructure, "Many of the roads in your district are out of repair, and your office has been receiving complaints from the citizenry. Will you allocate funds to repair the roads?", 2, tempString2, d);
         
+        System.out.println("\n\n");
+        
+        System.out.println("You have " + Integer.toString(decisions.length) + " decisions today.");
+        for (int foo = 0; foo < decisions.length; foo++) {
+            printDecision(decisions[foo]);
+        }
         
         
     }
