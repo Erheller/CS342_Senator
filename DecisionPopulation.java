@@ -54,3 +54,20 @@ class DBuildRoads implements Behavior {
     }
     
 }
+
+class DKILL implements Behavior {
+    public DKILL () {
+    
+    }
+    
+    public void AcceptDecision(District d) {
+        System.out.println("Uh, congrats. You didn't kill your entire town.");
+    }
+    
+    
+    public void IgnoreDecision(District d) {
+        d.updatePop(0);
+        System.out.println("Congratulations! You've killed everyone in your district. Are you proud of yourself?");
+    }
+    
+}

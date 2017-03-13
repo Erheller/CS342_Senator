@@ -1,11 +1,17 @@
 import java.util.Scanner;
+import java.util.Random;
+
 public class SenatorSim
+
 {
     Scanner sc;
     District d;
+    Random rand;
+
     
     public SenatorSim () {
         sc = new Scanner(System.in); //scanner for text input
+        rand = new Random();
     }
     
     public static void main( String[] args)
@@ -20,7 +26,7 @@ public class SenatorSim
     //TODO
     //exception handling
     int getDistrictFromUser () {
-        System.out.println("Please enter type of district you want (1-3), or 0 to exit");
+        System.out.println("Please enter type of district you want (1-3), or 0 to exit.\nPress 4 for a random district.");
         int type = sc.nextInt();
         
         if (type == 0) {
@@ -34,6 +40,10 @@ public class SenatorSim
             return -1;
         }
         
+        else if (type == 4) {
+            return rand.nextInt(3);
+        }
+
         else if (type > 0 && type < 4) {
             return type;
         }
@@ -119,9 +129,11 @@ public class SenatorSim
         }
         
         //creating two different Decisions
-        Decision[] decisions = new Decision[2];
+        Decision[] decisions = new Decision[3];
         String[] tempString = new String[2];
         String[] tempString2 = new String[2];
+        String[] tempString3 = new String[2];
+
         tempString[0] = "Allocate $50,000 to fund the vaccination program";
         tempString[1] = "I have more important things to take care of";
         
@@ -129,6 +141,14 @@ public class SenatorSim
         tempString2[0] = "Allocate $200,000 to start the road repairs";
         tempString2[1] = "The roads are fine. At least near your house.";
         decisions[1] = new Decision(new DBuildRoads(), Category.Infrastructure, "Many of the roads in your district are out of repair, and your office has been receiving complaints from the citizenry. Will you allocate funds to repair the roads?", 2, tempString2, d);
+        tempString3[0] = "Hell naw";
+        tempString3[1] = "Hell ya";
+        decisions[2] = new Decision(new DKILL(), Category.Population, "A mysterious man approaches you. He asks, 'Would you like to kill everyone in your district?' What do you say?", 2, tempString3, d);
+        
+        
+        
+        
+        
         
         System.out.println("\n\n");
         
@@ -144,8 +164,6 @@ public class SenatorSim
         int input = sc.nextInt() - 1;
 
         for (int foo = 0; foo < decisions.length; foo++) {
-            
-
             if (input == 0) {
                 decisions[foo].Accept();
                 break;
@@ -162,6 +180,10 @@ public class SenatorSim
         }
         
         System.out.println(d.getDistrict());
+        
+        if (d.getPop() == 0) {
+            System.out.println("\n\n\n\nEveryone in your district is dead. That's, uh, actually pretty impressive. I don't even think <STRING__BAD_POLITICIAN> would do such a bad job at governing.\n\nGame over.\n");
+        }
     }
     
 }
