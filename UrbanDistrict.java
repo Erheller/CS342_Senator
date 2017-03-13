@@ -19,13 +19,37 @@ public class UrbanDistrict implements District {
   {
      pop = 50000 + decision;
   }
+  public void updatePop(double decision)
+  {
+    pop = decision;
+  }
+  public double getPop(double decision)
+  {
+    return decision;
+  }
   public void setBudget(double decision)
   {
      budget = 200000 + decision;
   }
+  public void updateBudget(double decision)
+  {
+    budget = decision;
+  }
+  public double getBudget(double decision)
+  {
+    return decision;
+  }
   public void setDeath(double decision)
   {
      death = pop*.00823 + decision;
+  }
+  public void updateDeath(double decision)
+  {
+    death = decision;
+  }
+  public double getDeath(double decision)
+  {
+    return decision;
   }
   public String getDistrict()
   {    

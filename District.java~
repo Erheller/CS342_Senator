@@ -4,21 +4,9 @@ public interface District {
 
     void setPop(double decision);
 
-    void updatePop(double decision);
-    
-    double getPop(double decision);
-    
     void setBudget(double decision);
 
-    void updateBudget(double decision);
-    
-    double getBudget(double decision);
-    
     void setDeath(double decision);
-    
-    void updateDeath(double decision);
-    
-    double getDeath(double decision);
     
     String getDistrict();
 }

@@ -23,7 +23,13 @@ public class SenatorSim
         int type = sc.nextInt();
         
         if (type == 0) {
+            System.out.println("Are you sure you want to exit? Say yes or no");
+            String areYouSure = sc.next();
+            if(areYouSure.equals("yes"))
+            {
             System.exit(0);
+            return -1;
+            }
             return -1;
         }
         
