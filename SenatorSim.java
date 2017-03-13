@@ -90,14 +90,16 @@ public class SenatorSim
         return "";
     }
     
-    public void printDecision (Decision d) {
+    public int printDecision (Decision d, int index) {
         System.out.println("  Type: " + getCategoryString(d.cat));
         
         System.out.println("  " + d.description);
         for (int foo = 0; foo < d.numDecisions; foo++) {
-            System.out.println("    " + Integer.toString(foo+1) + ") " + d.decisionDesc[foo]);
+            index++;
+            System.out.println("    " + Integer.toString(index) + ") " + d.decisionDesc[foo]);
         }
         
+        return index;
     }
     
     void processCommandLoop () {
@@ -130,12 +132,34 @@ public class SenatorSim
         
         System.out.println("\n\n");
         
+        int index = 0;
+        
         System.out.println("You have " + Integer.toString(decisions.length) + " decisions today.");
         for (int foo = 0; foo < decisions.length; foo++) {
-            printDecision(decisions[foo]);
+            index = printDecision(decisions[foo], index);
         }
         
+        int input = sc.nextInt() - 1;
+
+        for (int foo = 0; foo < decisions.length; foo++) {
+            
+
+            if (input == 0) {
+                decisions[foo].Accept();
+                break;
+            }
+            else if (input == 1) {
+                decisions[foo].Ignore();
+                break;
+            }
+            //TODO
+            //Make this less rigid
+            else {
+                input -= 2;
+            }
+        }
         
+        System.out.println(d.getDistrict());
     }
     
 }
