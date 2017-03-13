@@ -184,6 +184,8 @@ public class SenatorSim
         if (d.getPop() == 0) {
             System.out.println("\n\n\n\nEveryone in your district is dead. That's, uh, actually pretty impressive. I don't even think <STRING__BAD_POLITICIAN> would do such a bad job at governing.\n\nGame over.\n");
         }
+        
+        sc.nextInt();
     }
     
 }
