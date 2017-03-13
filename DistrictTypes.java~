@@ -18,7 +18,7 @@ class CoastalDistrict implements District {
   }
   public void setPop(double decision)
   {
-     pop = 16600 + decision;
+     pop = 8300 + decision;
   }
   public void updatePop(double decision)
   {
@@ -30,7 +30,7 @@ class CoastalDistrict implements District {
   }
   public void setBudget(double decision)
   {
-     budget = 10000000 + decision;
+     budget = 1000000 + decision;
   }
   public void updateBudget(double decision)
   {
@@ -83,7 +83,7 @@ class UrbanDistrict implements District {
     }
     public void setPop(double decision)
     {
-        pop = 50000000 + decision;
+        pop = 50000 + decision;
     }
     public void updatePop(double decision)
     {
@@ -95,7 +95,7 @@ class UrbanDistrict implements District {
     }
     public void setBudget(double decision)
     {
-        budget = 100000000 + decision;
+        budget = 200000 + decision;
     }
     public void updateBudget(double decision)
     {
@@ -158,7 +158,7 @@ class RuralDistrict implements District {
     }
     public void setBudget(double decision)
     {
-        budget = 3000000 + decision;
+        budget = 15000 + decision;
     }
     public void updateBudget(double decision)
     {
