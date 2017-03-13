@@ -1,4 +1,5 @@
-public class CoastalDistrict implements District {
+
+class CoastalDistrict implements District {
 
   public int dType;
   public double pop;
