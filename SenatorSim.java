@@ -42,7 +42,26 @@ public class SenatorSim
     //For a bDecision you would make it a negative value as it adds the value onto the criteria.
     //***We could just use a 1 or 0 and add or subtract a certain amount in the district but thats something I have to discuss
     //***With the team.
-    District createDistrict (int dType) {
+    
+    District createDistrictUrban (int dType) {
+        District d = new UrbanDistrict(dType);
+        d.setName();
+        d.setPop(0);
+        d.setBudget(0);
+        d.setDeath(0);
+        System.out.println(d.getDistrict());    //debug line
+        return d;
+    }
+    District createDistrictRural (int dType) {
+        District d = new RuralDistrict(dType);
+        d.setName();
+        d.setPop(0);
+        d.setBudget(0);
+        d.setDeath(0);
+        System.out.println(d.getDistrict());    //debug line
+        return d;
+    }
+     District createDistrictCoastal (int dType) {
         District d = new CoastalDistrict(dType);
         d.setName();
         d.setPop(0);
@@ -54,7 +73,18 @@ public class SenatorSim
     
     void processCommandLoop () {
         int districtType = getDistrictFromUser ();
-        createDistrict(districtType);
+        if(districtType == 1)
+        {
+         createDistrictUrban(districtType);
+        }
+        if(districtType == 2)
+        {
+         createDistrictRural(districtType);
+        }
+        if(districtType == 3)
+        {
+         createDistrictCoastal(districtType);
+        }
     }
     
 }
