@@ -10,33 +10,22 @@ public class CoastalDistrict implements District {
     this.dType = dType;
   }
   //All the setters and getters for population
+  //***March 12, 2017 - Took out dType passing because we have classes for each district so dont need to specify here. - Shanil Lobanwala
   public void setName()
   {
-    if(dType == 3)
-    {
-    dName = "Coastal District";
-    }
+     dName = "Coastal District";
   }
   public void setPop(double decision)
   {
-    if(dType == 3)
-    {
-    pop = 8300 + decision;
-    }
+     pop = 8300 + decision;
   }
   public void setBudget(double decision)
   {
-    if(dType == 3)
-    {
-    budget = 200000+ decision;
-    }
+     budget = 1000000 + decision;
   }
   public void setDeath(double decision)
   {
-    if(dType == 3)
-    {
-    death = pop*.00823 + decision;
-    }
+     death = pop*.00823 + decision;
   }
   public String getDistrict()
   {    
