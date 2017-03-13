@@ -23,9 +23,9 @@ public class RuralDistrict implements District {
   {
     pop = decision;
   }
-  public double getPop(double decision)
+  public double getPop()
   {
-    return decision;
+    return pop;
   }
   public void setBudget(double decision)
   {
@@ -35,9 +35,9 @@ public class RuralDistrict implements District {
   {
     budget = decision;
   }
-  public double getBudget(double decision)
+  public double getBudget()
   {
-    return decision;
+    return budget;
   }
   public void setDeath(double decision)
   {
@@ -47,9 +47,9 @@ public class RuralDistrict implements District {
   {
     death = decision;
   }
-  public double getDeath(double decision)
+  public double getDeath()
   {
-    return decision;
+    return death;
   }
   public String getDistrict()
   {    
