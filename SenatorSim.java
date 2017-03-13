@@ -125,10 +125,10 @@ public class SenatorSim
         tempString[0] = "Allocate $50,000 to fund the vaccination program";
         tempString[1] = "I have more important things to take care of";
         
-        decisions[0] = new Decision(new DecisionPopulation(), Category.Population, "It's flu season, and many of the people in your district are unvaccinated. Will you spend funds for a free vaccination program?", 2, tempString, d);
+        decisions[0] = new Decision(new DVaccination(), Category.Population, "It's flu season, and many of the people in your district are unvaccinated. Will you spend funds for a free vaccination program?", 2, tempString, d);
         tempString2[0] = "Allocate $200,000 to start the road repairs";
         tempString2[1] = "The roads are fine. At least near your house.";
-        decisions[1] = new Decision(new DecisionPopulation(), Category.Infrastructure, "Many of the roads in your district are out of repair, and your office has been receiving complaints from the citizenry. Will you allocate funds to repair the roads?", 2, tempString2, d);
+        decisions[1] = new Decision(new DBuildRoads(), Category.Infrastructure, "Many of the roads in your district are out of repair, and your office has been receiving complaints from the citizenry. Will you allocate funds to repair the roads?", 2, tempString2, d);
         
         System.out.println("\n\n");
         
@@ -138,6 +138,8 @@ public class SenatorSim
         for (int foo = 0; foo < decisions.length; foo++) {
             index = printDecision(decisions[foo], index);
         }
+        
+        System.out.println("\nWhich decision will you make? (enter an integer)");
         
         int input = sc.nextInt() - 1;
 
