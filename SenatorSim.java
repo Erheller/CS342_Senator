@@ -17,7 +17,13 @@ public class SenatorSim
     public static void main( String[] args)
     {
         SenatorSim ss = new SenatorSim ();
+        //Where Shanil Dummy cases print
+        ChangeOptions();
+        changeBrightness();
+        changeSize();
+        changeMusic();
         ss.processCommandLoop();
+        
     }
     
     //have the user input a number
@@ -183,26 +189,46 @@ public class SenatorSim
         
         if (d.getPop() == 0) {
             System.out.println("\n\n\n\nEveryone in your district is dead. That's, uh, actually pretty impressive. I don't even think <STRING__BAD_POLITICIAN> would do such a bad job at governing.\n\nGame over.\n");
+        
         }
         
         sc.nextInt();
+        
     }
-    
+    //Shanil Dummy Cases
+
+  public static void ChangeOptions()
+  {
+  System.out.println("Which options would you like to change?");
+  }
+  public static void changeBrightness()
+  {
+    System.out.println("You have modified the brightness to <this>");
+  }
+  public static void changeSize()
+  {
+    System.out.println("You have changed the canvas size to <this>");
+  }
+  public static void changeMusic()
+  {
+    System.out.println("You have set the default music to Mario 8 bit track");
+  }
+   
 }
 
 
-
-
+ 
+//Kyle Dummy cases
 class DataStorage {
     public DataStorage() {
         System.out.println("DataStorage created!");
     }
     
-    public saveGame() {
+    public void saveGame() {
         System.out.println("Game saved");
     }
     
-    public loadGame() {
+    public void loadGame() {
         System.out.println("Game load");
     }
 }
