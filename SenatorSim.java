@@ -189,3 +189,20 @@ public class SenatorSim
     }
     
 }
+
+
+
+
+class DataStorage {
+    public DataStorage() {
+        System.out.println("DataStorage created!");
+    }
+    
+    public saveGame() {
+        System.out.println("Game saved");
+    }
+    
+    public loadGame() {
+        System.out.println("Game load");
+    }
+}
