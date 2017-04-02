@@ -134,25 +134,9 @@ public class SenatorSim
          d = createDistrictCoastal(districtType);
         }
         
-        //creating two different Decisions
-        
+        //creating three different Decisions
         Decision[] decisions = new Decision[3];
-        /*
-        String[] tempString = new String[2];
-        String[] tempString2 = new String[2];
-        String[] tempString3 = new String[2];
 
-        tempString[0] = "Allocate $50,000 to fund the vaccination program";
-        tempString[1] = "I have more important things to take care of";
-        
-        decisions[0] = new Decision(new DVaccination(), Category.Population, "It's flu season, and many of the people in your district are unvaccinated. Will you spend funds for a free vaccination program?", 2, tempString, d);
-        tempString2[0] = "Allocate $200,000 to start the road repairs";
-        tempString2[1] = "The roads are fine. At least near your house.";
-        decisions[1] = new Decision(new DBuildRoads(), Category.Infrastructure, "Many of the roads in your district are out of repair, and your office has been receiving complaints from the citizenry. Will you allocate funds to repair the roads?", 2, tempString2, d);
-        tempString3[0] = "Hell naw";
-        tempString3[1] = "Hell ya";
-        decisions[2] = new Decision(new DKILL(), Category.Population, "A mysterious man approaches you. He asks, 'Would you like to kill everyone in your district?' What do you say?", 2, tempString3, d);
-        */
         //DecisionFactory that produces decisions
         DecisionFactory df = new DecisionFactory();
         
