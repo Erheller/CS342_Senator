@@ -135,7 +135,9 @@ public class SenatorSim
         }
         
         //creating two different Decisions
+        
         Decision[] decisions = new Decision[3];
+        /*
         String[] tempString = new String[2];
         String[] tempString2 = new String[2];
         String[] tempString3 = new String[2];
@@ -150,9 +152,15 @@ public class SenatorSim
         tempString3[0] = "Hell naw";
         tempString3[1] = "Hell ya";
         decisions[2] = new Decision(new DKILL(), Category.Population, "A mysterious man approaches you. He asks, 'Would you like to kill everyone in your district?' What do you say?", 2, tempString3, d);
+        */
+        //DecisionFactory that produces decisions
+        DecisionFactory df = new DecisionFactory();
         
         
-        
+        decisions[0] = df.vaccination(d);
+        decisions[1] = df.vaccination(d);
+        decisions[2] = df.vaccination(d);
+
         
         
         

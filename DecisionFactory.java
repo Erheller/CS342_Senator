@@ -1,5 +1,31 @@
-
-public class DecisionPopulation implements Behavior
+public class DecisionFactory {
+	
+	public DecisionFactory(){
+		
+	};
+	
+	//only send two arguements here for now
+	private String[] packageStrings (String...strings) {
+		return strings;
+	}
+	
+	public Decision vaccination (District d) {
+		//2 decisions
+        String descString = "It's flu season, and many of the people in your district are unvaccinated. Will you spend funds for a free vaccination program?";
+        String[] decisionDescString = packageStrings (
+        		"Allocate $50,000 to fund the vaccination program.",
+        		"The funds will be better used elsewhere.");
+		String[] outcomeDescString = packageStrings (
+				"The vaccination program is a success! There are no deaths from the flu this year.",
+				"This season's flu is especially bad. People die. You bring shame and dishonor to your family.");
+		return new Decision(new DVaccination(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
+	}
+	
+	
+	
+	
+}
+class DecisionPopulation implements Behavior
 {
     public DecisionPopulation() {
         

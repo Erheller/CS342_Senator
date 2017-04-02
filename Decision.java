@@ -13,6 +13,7 @@ public class Decision
     String description;
     int numDecisions;
     String[] decisionDesc;
+    String[] outcomeDesc;
     
     District d;
     
@@ -25,11 +26,12 @@ public class Decision
         behavior = b;
     }
     
-    public Decision (Behavior b, Category newCat, String newDesc, int newNum, String[] newDesDesc, District newD) {
+    public Decision (Behavior b, Category newCat, String newDesc, int newNum, String[] newDesDesc, String[] newOutDesc, District newD) {
         behavior = b;
         setCategory(newCat);
         setDescription(newDesc);
-        setDecisonsdisc(newNum, newDesDesc);
+        setDecisonDesc(newNum, newDesDesc);
+        setOutcomeDesc(newNum, newOutDesc);
         setDistrict(newD);
     }
     
@@ -52,7 +54,7 @@ public class Decision
     public int getNumDecision(){
         return this.numDecisions;
     }
-    public void setDecisonsdisc(int newNumber , String[] newDescription){
+    public void setDecisonDesc(int newNumber , String[] newDescription){
         this.numDecisions = newNumber;
         this.decisionDesc = newDescription;
     }
@@ -61,6 +63,10 @@ public class Decision
         return this.decisionDesc[i];
     }
     
+    public void setOutcomeDesc(int newNumber , String[] newDescription){
+        this.numDecisions = newNumber;
+        this.outcomeDesc = newDescription;
+    }    
     public void setDistrict (District newD) {
         this.d = newD;
     }

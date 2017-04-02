@@ -18,7 +18,7 @@ ClASSES = \
 MAIN = SenatorSim
 
 default: classes
-	javac DistrictTypes.java Behavior.java Decision.java DecisionPopulation.java District.java SenatorSim.java
+	javac DistrictTypes.java Behavior.java Decision.java DecisionFactory.java District.java SenatorSim.java
 
 classes: $(CLASSES:.java=.class)
 
