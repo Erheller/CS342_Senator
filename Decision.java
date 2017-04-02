@@ -75,11 +75,13 @@ public class Decision
     
     public void Accept () {
         behavior.AcceptDecision(d);
+        System.out.println(this.outcomeDesc[0]);
     }
     
     
     public void Ignore () {
         behavior.IgnoreDecision(d);
+        System.out.println(this.outcomeDesc[1]);
     }
     
     
