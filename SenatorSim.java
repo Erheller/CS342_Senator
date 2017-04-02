@@ -158,7 +158,7 @@ public class SenatorSim
         
         
         decisions[0] = df.vaccination(d);
-        decisions[1] = df.vaccination(d);
+        decisions[1] = df.road(d);
         decisions[2] = df.vaccination(d);
 
         

@@ -21,6 +21,18 @@ public class DecisionFactory {
 		return new Decision(new DVaccination(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
 	}
 	
+	public Decision road (District d) {
+		//2 decisions
+        String descString = "Many of the roads in your district are out of repair, and your office has been receiving complaints from the citizenry. Will you allocate funds to repair the roads?";
+        String[] decisionDescString = packageStrings (
+        		"Roads are important. Allocate $200,000 to start the repairs",
+        		"The roads are fine. At least near your house.");
+		String[] outcomeDescString = packageStrings (
+				"You've allocated funds to improve the roads around town. In a few months, the town's roads will be nice and shiny, but in the meantime the citizens have to deal with increased traffic and the noise of jackhammers.",
+				"The roads are not repaired. They continue to fall into disrepair, making the citizens unhappy. A few traffic accidents also occur.");
+		return new Decision(new DBuildRoads(), Category.Infrastructure, descString, 2, decisionDescString, outcomeDescString, d);
+	}
+	
 	
 	
 	
