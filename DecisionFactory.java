@@ -9,6 +9,14 @@ public class DecisionFactory {
 		return strings;
 	}
 	
+	/*
+	 * Here are the different Decisions you can make
+	 * Format is like this:
+	 * 	method to create decision
+	 * 	interface that the decision class uses
+	 */
+	
+	
 	public Decision vaccination (District d) {
 		//2 decisions
         String descString = "It's flu season, and many of the people in your district are unvaccinated. Will you spend funds for a free vaccination program?";
@@ -20,6 +28,17 @@ public class DecisionFactory {
 				"This season's flu is especially bad. People die. You bring shame and dishonor to your family.");
 		return new Decision(new DVaccination(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
 	}
+	class DVaccination implements Behavior {
+		//reduce money, change nothing else
+	    public void AcceptDecision(District d) {
+	        d.updateBudget(d.getBudget() - 50000);
+	    }
+	    //decrease population
+	    public void IgnoreDecision(District d) {
+	        d.updatePop(d.getPop() * 0.95);
+	    }
+	}
+	
 	
 	public Decision road (District d) {
 		//2 decisions
@@ -32,6 +51,18 @@ public class DecisionFactory {
 				"The roads are not repaired. They continue to fall into disrepair, making the citizens unhappy. A few traffic accidents also occur.");
 		return new Decision(new DBuildRoads(), Category.Infrastructure, descString, 2, decisionDescString, outcomeDescString, d);
 	}
+	class DBuildRoads implements Behavior {
+		//reduce money
+		//TODO reduce approval
+	    public void AcceptDecision(District d) {
+	        d.updateBudget(d.getBudget() - 200000);
+	    }
+	    //increase death rate
+	    public void IgnoreDecision(District d) {
+	        d.updateDeath(d.getDeath() + d.getPop() * 0.01);
+	    }
+	}
+	
 	
 	public Decision kill (District d) {
 		//2 decisions
@@ -44,72 +75,25 @@ public class DecisionFactory {
 				"Uh, congrats. You didn't kill your entire town.");
 		return new Decision(new DKILL(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
 	}
+	class DKILL implements Behavior {
+		//kill everyone
+	    public void AcceptDecision(District d) {
+	        d.updatePop(0);
+	    }
+    	//do nothing
+	    public void IgnoreDecision(District d) {
+	    }
+	}
 	
 	
 }
-class DecisionPopulation implements Behavior
-{
-    public DecisionPopulation() {
-        
-    }
-    
-
-    public void AcceptDecision(District d) {
-        d.updatePop(d.getPop() * 1.05);
-    }
-    
-    
-    public void IgnoreDecision(District d) {
-        d.updatePop(d.getPop() * 0.95);
-    }
-}
 
 
 
 
-class DVaccination implements Behavior {
-    public DVaccination() {
-        
-    }
-    
-    
-    public void AcceptDecision(District d) {
-        d.updateBudget(d.getBudget() - 50000);
-    }
-    
-    
-    public void IgnoreDecision(District d) {
-        d.updatePop(d.getPop() * 0.95);
-    }
-}
 
-class DBuildRoads implements Behavior {
-    public DBuildRoads () {
-        
-    }
 
-    public void AcceptDecision(District d) {
-        d.updateBudget(d.getBudget() - 200000);
-    }
-    
-    
-    public void IgnoreDecision(District d) {
-        d.updateDeath(d.getDeath() + d.getPop() * 0.01);
-    }
-    
-}
 
-class DKILL implements Behavior {
-    public DKILL () {
-    
-    }
-    
-    public void AcceptDecision(District d) {
-        d.updatePop(0);
-    }
-    
-    
-    public void IgnoreDecision(District d) {
-    }
-    
-}
+
+
+
