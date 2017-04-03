@@ -1,18 +1,81 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.*;
 
-public class SenatorSim
+public class SenatorSim extends JFrame implements ActionListener
 
 {
+    static JButton newGame = null;
+    static JButton load = null;
+    static JButton options = null;
+    static JButton exitGame = null;
+    static JPanel mjp = null;
+    //private MyCanvas canvas = null; 
     Scanner sc;
     District d;
     Random rand;
 
     
     public SenatorSim () {
+        // TODO Auto-generated constructor stub
+        newGame = new JButton("New Game");
+        load = new JButton("Load Game");
+        options = new JButton("Options");
+        exitGame = new JButton("Exit Game");
+        newGame.addActionListener(this);
+        load.addActionListener(this);
+        options.addActionListener(this);
+        exitGame.addActionListener(this);
+        mjp = new JPanel();
+        //Added buttons with easy to read references
+        mjp.add(newGame);
+        mjp.add(load);
+        mjp.add(options);
+        mjp.add(exitGame);
+        mjp.setBackground(Color.black);
+        mjp.setBounds(0, 0, 400, 300);
+        mjp.setSize(400,300);
+  
+  
+        this.setTitle("CS342 HW1 Redux Shanil Lobanwala");
+        this.setSize(400, 300);
+        this.getContentPane().setBackground(Color.BLACK);
+        this.add(mjp);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+        this.setResizable(false);
+  
+        //canvas = new MyCanvas();
+        //this.add(canvas);
+        //end of Shanil Code
+        
         sc = new Scanner(System.in); //scanner for text input
         rand = new Random();
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    // TODO Auto-generated method stub
+    // Created methods in MyCanvas class so I can acess and pass values into the mouse pressed values so the buttons can do
+    // what they need to.
+        if(e.getActionCommand() == "Exit Game"){
+        System.exit(0);  
+  }
+ }
+ 
+//}
+    
     
     public static void main( String[] args)
     {
