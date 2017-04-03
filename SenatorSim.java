@@ -26,9 +26,12 @@ public class SenatorSim extends JFrame implements ActionListener
     static JButton load = null;
     static JButton options = null;
     static JButton exitGame = null;
+    static JButton democrat = null;
     static JPanel mjp = null;
-    ImageIcon mainImage = new ImageIcon("senator.gif");
+    ImageIcon mainImage = new ImageIcon("images/Senator.png");
+    ImageIcon mainImage2 = new ImageIcon("images/Simulator.png");
     JLabel mainImageLabel = new JLabel("", mainImage, JLabel.CENTER);
+    JLabel mainImageLabel2 = new JLabel("", mainImage2, JLabel.CENTER);
     //private BufferedImage image;
     //private MyCanvas canvas = null; 
     Scanner sc;
@@ -39,8 +42,6 @@ public class SenatorSim extends JFrame implements ActionListener
     public SenatorSim () {
         // TODO Auto-generated constructor stub
         newGame = new JButton("New Game");
-        
-        //newGame.setLocation(0,0);
         load = new JButton("Load Game");
         options = new JButton("Options");
         exitGame = new JButton("Exit Game");
@@ -55,12 +56,14 @@ public class SenatorSim extends JFrame implements ActionListener
         load.setBounds(40, 200, 100, 60);
         options.setBounds(40, 300, 100, 60);
         exitGame.setBounds(40, 400, 100, 60);
-        mainImageLabel.setBounds(400, 100, 256, 428);
+        mainImageLabel.setBounds(300, 100, 373, 83);
+        mainImageLabel2.setBounds(260, 200, 460, 82);
         mjp.add(newGame);
         mjp.add(load);
         mjp.add(options);
         mjp.add(exitGame);
         mjp.add(mainImageLabel);
+        mjp.add(mainImageLabel2);
         mjp.setBackground(Color.BLACK);
         //JPanel panel = new JPanel(new BorderLayout());
         //panel.add( label, BorderLayout.CENTER ); 
@@ -73,7 +76,7 @@ public class SenatorSim extends JFrame implements ActionListener
         mjp.setSize(1000,700);
   
   
-        this.setTitle("CS342 HW1 Redux Shanil Lobanwala");
+        this.setTitle("Senator Simulator");
         this.setSize(1000, 700);
         this.getContentPane().setBackground(Color.BLACK);
         this.add(mjp);
@@ -86,6 +89,16 @@ public class SenatorSim extends JFrame implements ActionListener
         rand = new Random();
         
     }
+    public void selectParty () {
+      mjp.removeAll();
+      democrat = new JButton("Democrat");
+      democrat.addActionListener(this);
+      democrat.setBounds(40, 100, 100, 60);
+      mjp.add(democrat);
+      mjp.revalidate();
+      mjp.repaint();
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
     // TODO Auto-generated method stub
@@ -95,6 +108,7 @@ public class SenatorSim extends JFrame implements ActionListener
         System.exit(0);  
     }
         if(e.getActionCommand() == "New Game"){
+          selectParty();
     }
   }
  
