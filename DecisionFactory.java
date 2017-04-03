@@ -153,7 +153,7 @@ public class DecisionFactory {
 	    }
 	    //receive money
 	    public void IgnoreDecision(District d) {
-	    	d.updateBudget(d.getBudget() + 100,000);
+	    	d.updateBudget(d.getBudget() + 100000);
 	    }
 	}
 	
