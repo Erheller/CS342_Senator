@@ -95,7 +95,7 @@ public class DecisionFactory {
 		String[] outcomeDescString = packageStrings (
 				"The food inspection department continues to request more money. Eventually someone notices that their balances don't add up, but no one is able to find out where the money went or who is responsible.",
 				"The food inspection department undergoes restructuring. People are laid off, and inspections stop for the forseeable future.");
-		return new Decision(new ["INTERFACE"](), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
+		return new Decision(new DFoodInspection(), Category.Commerce, descString, 2, decisionDescString, outcomeDescString, d);
 	}
 	class DFoodInspection implements Behavior {
 		//Spend money
@@ -111,6 +111,27 @@ public class DecisionFactory {
 	}
 	
 	
+	public Decision schoolTalk (District d) {
+		//2 decisions
+        String descString = "The local high school invites you to give a presentation about your role in the government to their current students.";
+        String[] decisionDescString = packageStrings (
+        		"Accept. You like talking about yourself.",
+        		"Decline. They're high school students. You don't like high school students.");
+		String[] outcomeDescString = packageStrings (
+				"Your speech is generally successful. The local newspaper covers the event, and your approval goes up.",
+				"Eh, the kids probably didn't want to listen to you anyways.");
+		return new Decision(new DSchoolTalk(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
+	}
+	class DSchoolTalk implements Behavior {
+		//[TODO] Approval rating goes up
+	    public void AcceptDecision(District d) {
+	        
+	    }
+	    //nothing happens
+	    public void IgnoreDecision(District d) {
+	        
+	    }
+	}
 	
 	
 	
