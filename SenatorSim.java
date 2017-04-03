@@ -12,6 +12,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.*;
 
 public class SenatorSim extends JFrame implements ActionListener
@@ -22,6 +27,9 @@ public class SenatorSim extends JFrame implements ActionListener
     static JButton options = null;
     static JButton exitGame = null;
     static JPanel mjp = null;
+    ImageIcon mainImage = new ImageIcon("senator.gif");
+    JLabel mainImageLabel = new JLabel("", mainImage, JLabel.CENTER);
+    //private BufferedImage image;
     //private MyCanvas canvas = null; 
     Scanner sc;
     District d;
@@ -31,6 +39,8 @@ public class SenatorSim extends JFrame implements ActionListener
     public SenatorSim () {
         // TODO Auto-generated constructor stub
         newGame = new JButton("New Game");
+        
+        //newGame.setLocation(0,0);
         load = new JButton("Load Game");
         options = new JButton("Options");
         exitGame = new JButton("Exit Game");
@@ -40,29 +50,41 @@ public class SenatorSim extends JFrame implements ActionListener
         exitGame.addActionListener(this);
         mjp = new JPanel();
         //Added buttons with easy to read references
+        mjp.setLayout(null);
+        newGame.setBounds(40, 100, 100, 60);
+        load.setBounds(40, 200, 100, 60);
+        options.setBounds(40, 300, 100, 60);
+        exitGame.setBounds(40, 400, 100, 60);
+        mainImageLabel.setBounds(400, 100, 256, 428);
         mjp.add(newGame);
         mjp.add(load);
         mjp.add(options);
         mjp.add(exitGame);
-        mjp.setBackground(Color.black);
-        mjp.setBounds(0, 0, 400, 300);
-        mjp.setSize(400,300);
+        mjp.add(mainImageLabel);
+        mjp.setBackground(Color.BLACK);
+        //JPanel panel = new JPanel(new BorderLayout());
+        //panel.add( label, BorderLayout.CENTER ); 
+        
+        //mjp.drawImage(image, 0, 0, this);
+        //mjp.setLayout(new BorderLayout());
+        //mjp.add(newGame,BorderLayout.WEST);
+        //mjp.add(load,BorderLayout.WEST);
+        mjp.setBounds(0, 0, 1000, 700);
+        mjp.setSize(1000,700);
   
   
         this.setTitle("CS342 HW1 Redux Shanil Lobanwala");
-        this.setSize(400, 300);
+        this.setSize(1000, 700);
         this.getContentPane().setBackground(Color.BLACK);
         this.add(mjp);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setResizable(false);
-  
-        //canvas = new MyCanvas();
-        //this.add(canvas);
+        //this.setResizable(false);
         //end of Shanil Code
-        
+        //newGame.setBounds(0, 0, 5, 10);
         sc = new Scanner(System.in); //scanner for text input
         rand = new Random();
+        
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -71,12 +93,17 @@ public class SenatorSim extends JFrame implements ActionListener
     // what they need to.
         if(e.getActionCommand() == "Exit Game"){
         System.exit(0);  
+    }
+        if(e.getActionCommand() == "New Game"){
+    }
   }
- }
  
 //}
     
-    
+    public void control(){
+      
+        newGame.setLocation(0,0);
+    }
     public static void main( String[] args)
     {
         SenatorSim ss = new SenatorSim ();
