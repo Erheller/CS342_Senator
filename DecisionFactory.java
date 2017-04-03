@@ -101,7 +101,7 @@ public class DecisionFactory {
 		//Spend money
 		//[TODO] Lower population satisfaction
 	    public void AcceptDecision(District d) {
-	        d.updateBudget(d.getBudget() - 200,000);
+	        d.updateBudget(d.getBudget() - 200000);
 	    }
 	    //Increase death rate slightly
 	    //[TODO] Lower population satisfaction
@@ -134,7 +134,28 @@ public class DecisionFactory {
 	}
 	
 	
-	
+	public Decision merchantInvestigation (District d) {
+		//2 decisions
+        String descString = "You are approached by a wealthy businessman, one of the most influential in the district. 'I'm under investigation for municipal tax evasion,' he mutters, eyes darting around the room. 'Help me out, and I'll make it worth your while'.";
+        String[] decisionDescString = packageStrings (
+        		"Accept.",
+        		"Decline.");
+		String[] outcomeDescString = packageStrings (
+				"The charges against the businessman are dropped. Everyone knows something suspicious went on, but no one has solid proof you helped. But the rumors start anyways.",
+				"The businessman, obviously flustered by your refusal, hems and haws for a few minutes before leaving. The courts slap him with a heavy fine.");
+		return new Decision(new DMerchantInvestigation(), Category.Personal, descString, 2, decisionDescString, outcomeDescString, d);
+	}
+	class DMerchantInvestigation implements Behavior {
+		//Receive money
+		//[TODO] Decrease approval
+	    public void AcceptDecision(District d) {
+	    	d.updateBudget(d.getBudget() + 1000000);
+	    }
+	    //receive money
+	    public void IgnoreDecision(District d) {
+	    	d.updateBudget(d.getBudget() + 100,000);
+	    }
+	}
 	
 	
 	

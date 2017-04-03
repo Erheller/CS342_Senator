@@ -91,5 +91,5 @@ public class Decision
 
 
 enum Category {
-    Education, Population, Crime, Commerce, Infrastructure
+    Education, Population, Crime, Commerce, Infrastructure, Personal
 }
