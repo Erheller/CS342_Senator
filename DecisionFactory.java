@@ -158,6 +158,30 @@ public class DecisionFactory {
 	}
 	
 	
+	public Decision amazonTax (District d) {
+		//2 decisions
+        String descString = "Some members of your cabinet want to collect sales tax from online retailers that ship to your region.";
+        String[] decisionDescString = packageStrings (
+        		"Tax them. They get free shipping anyways.",
+        		"Don't tax them. You don't want to pay sales tax on that new washing machine you're buying.");
+		String[] outcomeDescString = packageStrings (
+				"The tax passes. Revenue increases.",
+				"Your washing machine arrives. Free shipping, no sales tax. How nice.");
+		return new Decision(new DAmazonTax(), Category.Commerce, descString, 2, decisionDescString, outcomeDescString, d);
+	}
+	class DAmazonTax implements Behavior {
+		//Get money
+		//[TODO] Lower approval
+	    public void AcceptDecision(District d) {
+	    	d.updateBudget(d.getBudget() + 500000);
+	    }
+	    //Nothing happens
+	    public void IgnoreDecision(District d) {
+	        
+	    }
+	}
+	
+	
 	
 	//template
 	/*
