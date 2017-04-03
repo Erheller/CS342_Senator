@@ -86,6 +86,61 @@ public class DecisionFactory {
 	}
 	
 	
+	public Decision foodInspection (District d) {
+		//2 decisions
+        String descString = "The food inspection department is running over budget.";
+        String[] decisionDescString = packageStrings (
+        		"Give them $200,000 of extra funding.",
+        		"Let them find their own sources for money.");
+		String[] outcomeDescString = packageStrings (
+				"The food inspection department continues to request more money. Eventually someone notices that their balances don't add up, but no one is able to find out where the money went or who is responsible.",
+				"The food inspection department undergoes restructuring. People are laid off, and inspections stop for the forseeable future.");
+		return new Decision(new ["INTERFACE"](), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
+	}
+	class DFoodInspection implements Behavior {
+		//Spend money
+		//[TODO] Lower population satisfaction
+	    public void AcceptDecision(District d) {
+	        d.updateBudget(d.getBudget() - 200,000);
+	    }
+	    //Increase death rate slightly
+	    //[TODO] Lower population satisfaction
+	    public void IgnoreDecision(District d) {
+	    	d.updateDeath(d.getDeath() + d.getPop() * 0.001);
+	    }
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//template
+	/*
+	public Decision ["NAMEOFDECISION"] (District d) {
+		//2 decisions
+        String descString = "[DESCRIPTION]";
+        String[] decisionDescString = packageStrings (
+        		"[OPTION1]",
+        		"[OPTION2");
+		String[] outcomeDescString = packageStrings (
+				"[OUTCOME1]",
+				"[OUTCOME2]");
+		return new Decision(new ["INTERFACE"](), Category.["CATEGORY"], descString, 2, decisionDescString, outcomeDescString, d);
+	}
+	class ["INTERFACE"] implements Behavior {
+		//[DOCUMENTATION]
+	    public void AcceptDecision(District d) {
+	        
+	    }
+	    //[DOCUMENTATION]
+	    public void IgnoreDecision(District d) {
+	        
+	    }
+	}
+	*/
 }
 
 
