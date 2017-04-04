@@ -27,13 +27,13 @@ public class SenatorSim extends JFrame implements ActionListener
     static JButton options = null;
     static JButton exitGame = null;
     static JButton democrat = null;
+    static JButton republican = null;
+    static JButton independent = null;
     static JPanel mjp = null;
     ImageIcon mainImage = new ImageIcon("images/Senator.png");
     ImageIcon mainImage2 = new ImageIcon("images/Simulator.png");
     JLabel mainImageLabel = new JLabel("", mainImage, JLabel.CENTER);
     JLabel mainImageLabel2 = new JLabel("", mainImage2, JLabel.CENTER);
-    //private BufferedImage image;
-    //private MyCanvas canvas = null; 
     Scanner sc;
     District d;
     Random rand;
@@ -92,9 +92,17 @@ public class SenatorSim extends JFrame implements ActionListener
     public void selectParty () {
       mjp.removeAll();
       democrat = new JButton("Democrat");
+      republican = new JButton("Republican");
+      independent = new JButton("Independent");
       democrat.addActionListener(this);
+      republican.addActionListener(this);
+      independent.addActionListener(this);
       democrat.setBounds(40, 100, 100, 60);
+      republican.setBounds(40, 200, 100, 60);
+      independent.setBounds(40, 300, 100, 60);
       mjp.add(democrat);
+      mjp.add(republican);
+      mjp.add(independent);
       mjp.revalidate();
       mjp.repaint();
     }
