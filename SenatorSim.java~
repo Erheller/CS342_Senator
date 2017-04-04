@@ -1,19 +1,204 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.*;
 
-public class SenatorSim
+public class SenatorSim extends JFrame implements ActionListener
 
 {
+    static JButton newGame = null;
+    static JButton load = null;
+    static JButton options = null;
+    static JButton exitGame = null;
+    static JButton democrat = null;
+    static JButton republican = null;
+    static JButton independent = null;
+    static JButton coastalDistrict = null;
+    static JButton ruralDistrict = null;
+    static JButton urbanDistrict = null;
+    static JButton submit = null;
+    static JPanel mjp = null;
+    ImageIcon mainImage = new ImageIcon("images/Senator.png");
+    ImageIcon mainImage2 = new ImageIcon("images/Simulator.png");
+    JLabel mainImageLabel = new JLabel("", mainImage, JLabel.CENTER);
+    JLabel mainImageLabel2 = new JLabel("", mainImage2, JLabel.CENTER);
+    int submitFlag = 0;
     Scanner sc;
     District d;
     Random rand;
+    String dType = "";
+    String pop = "";
+    String budget = "";
+    String death = "";
 
     
     public SenatorSim () {
+        // TODO Auto-generated constructor stub
+        newGame = new JButton("New Game");
+        load = new JButton("Load Game");
+        options = new JButton("Options");
+        exitGame = new JButton("Exit Game");
+        newGame.addActionListener(this);
+        load.addActionListener(this);
+        options.addActionListener(this);
+        exitGame.addActionListener(this);
+        mjp = new JPanel();
+        //Added buttons with easy to read references
+        mjp.setLayout(null);
+        newGame.setBounds(40, 100, 100, 60);
+        load.setBounds(40, 200, 100, 60);
+        options.setBounds(40, 300, 100, 60);
+        exitGame.setBounds(40, 400, 100, 60);
+        mainImageLabel.setBounds(300, 100, 373, 83);
+        mainImageLabel2.setBounds(260, 200, 460, 82);
+        mjp.add(newGame);
+        mjp.add(load);
+        mjp.add(options);
+        mjp.add(exitGame);
+        mjp.add(mainImageLabel);
+        mjp.add(mainImageLabel2);
+        mjp.setBackground(Color.BLACK);
+        //JPanel panel = new JPanel(new BorderLayout());
+        //panel.add( label, BorderLayout.CENTER ); 
+        
+        //mjp.drawImage(image, 0, 0, this);
+        //mjp.setLayout(new BorderLayout());
+        //mjp.add(newGame,BorderLayout.WEST);
+        //mjp.add(load,BorderLayout.WEST);
+        mjp.setBounds(0, 0, 1000, 700);
+        mjp.setSize(1000,700);
+  
+  
+        this.setTitle("Senator Simulator");
+        this.setSize(1000, 700);
+        this.getContentPane().setBackground(Color.BLACK);
+        this.add(mjp);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+        //this.setResizable(false);
+        //end of Shanil Code
+        //newGame.setBounds(0, 0, 5, 10);
         sc = new Scanner(System.in); //scanner for text input
         rand = new Random();
+        
+    }
+    public void selectParty () {
+      mjp.removeAll();
+      democrat = new JButton("Democrat");
+      republican = new JButton("Republican");
+      independent = new JButton("Independent");
+      submit = new JButton("Submit");
+      democrat.addActionListener(this);
+      republican.addActionListener(this);
+      independent.addActionListener(this);
+      submit.addActionListener(this);
+      democrat.setBounds(40, 100, 100, 60);
+      republican.setBounds(40, 200, 100, 60);
+      independent.setBounds(40, 300, 100, 60);
+      submit.setBounds(800, 500, 100, 60);
+      mjp.add(democrat);
+      mjp.add(republican);
+      mjp.add(independent);
+      mjp.add(submit);
+      mjp.revalidate();
+      mjp.repaint();
     }
     
+    
+    public void selectDistrict () {
+      mjp.removeAll();
+      coastalDistrict = new JButton("Coastal");
+      ruralDistrict = new JButton("Rural");
+      urbanDistrict = new JButton("Urban");
+      submit = new JButton("Submit");
+      coastalDistrict.addActionListener(this);
+      ruralDistrict.addActionListener(this);
+      urbanDistrict.addActionListener(this);
+      submit.addActionListener(this);
+      coastalDistrict.setBounds(40, 100, 100, 60);
+      ruralDistrict.setBounds(40, 200, 100, 60);
+      urbanDistrict.setBounds(40, 300, 100, 60);
+      submit.setBounds(800, 500, 100, 60);
+      mjp.add(coastalDistrict);
+      mjp.add(ruralDistrict);
+      mjp.add(urbanDistrict);
+      mjp.add(submit);
+      mjp.revalidate();
+      mjp.repaint();
+    }
+    
+    
+    public void demographics() {
+      mjp.removeAll();
+      createDistrictCoastal(3);
+      //String s = Double.toString(d.getDeath());
+      JLabel type = new JLabel(dType);
+      type.setBounds(300, 100, 500, 500);
+      mjp.add(type);
+      mjp.revalidate();
+      mjp.repaint();
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    // TODO Auto-generated method stub
+    // Created methods in MyCanvas class so I can acess and pass values into the mouse pressed values so the buttons can do
+    // what they need to.
+        if(e.getActionCommand() == "Exit Game"){
+        System.exit(0);  
+    }
+        if(e.getActionCommand() == "New Game"){
+          selectParty();
+    }
+        if(e.getActionCommand() == "Democrat"){
+          submitFlag = 1;
+          selectDistrict();
+        }
+        if(e.getActionCommand() == "Republican"){
+          submitFlag = 1;
+        }
+        if(e.getActionCommand() == "Independent"){
+          submitFlag = 1;
+        }
+        if(e.getActionCommand() == "Coastal"){
+          //demographics();
+          selectParty();
+        }
+        if(e.getActionCommand() == "Rural"){
+          demographics();
+        }
+        if(e.getActionCommand() == "Urban"){
+        }
+        if(e.getActionCommand() == "Submit"){
+          //if(submitFlag == 1)
+          //{
+           // selectDistrict();
+          //}
+        }
+  }
+ 
+//}
+    
+    public void control(){
+      
+        newGame.setLocation(0,0);
+    }
     public static void main( String[] args)
     {
         SenatorSim ss = new SenatorSim ();
@@ -22,7 +207,7 @@ public class SenatorSim
         changeBrightness();
         changeSize();
         changeMusic();
-        ss.processCommandLoop();
+        //ss.processCommandLoop();
         
     }
     
@@ -73,6 +258,10 @@ public class SenatorSim
         d.setBudget(0);
         d.setDeath(0);
         System.out.println(d.getDistrict());    //debug line
+        dType = d.getName();
+        pop = Double.toString(d.getPop());
+        budget = Double.toString(d.getBudget());
+        death = Double.toString(d.getDeath());
         return d;
     }
     District createDistrictRural (int dType) {
@@ -82,6 +271,10 @@ public class SenatorSim
         d.setBudget(0);
         d.setDeath(0);
         System.out.println(d.getDistrict());    //debug line
+        dType = d.getName();
+        pop = Double.toString(d.getPop());
+        budget = Double.toString(d.getBudget());
+        death = Double.toString(d.getDeath());
         return d;
     }
      District createDistrictCoastal (int dType) {
@@ -91,6 +284,10 @@ public class SenatorSim
         d.setBudget(0);
         d.setDeath(0);
         System.out.println(d.getDistrict());    //debug line
+        dType = d.getName();
+        pop = Double.toString(d.getPop());
+        budget = Double.toString(d.getBudget());
+        death = Double.toString(d.getDeath());
         return d;
     }
     

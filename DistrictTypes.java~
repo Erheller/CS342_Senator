@@ -16,10 +16,6 @@ class CoastalDistrict implements District {
   {
      dName = "Coastal District";
   }
-  public String getName()
-  {
-      return dName;
-  }
   public void setPop(double decision)
   {
      pop = 16600 + decision;
@@ -81,14 +77,9 @@ class UrbanDistrict implements District {
     }
     //All the setters and getters for population
     //***March 12, 2017 - Took out dType passing because we have classes for each district so dont need to specify here. - Shanil Lobanwala
-    
     public void setName()
     {
         dName = "Urban District";
-    }
-    public String getName()
-    {
-      return dName;
     }
     public void setPop(double decision)
     {
@@ -128,10 +119,8 @@ class UrbanDistrict implements District {
     }
     public String getDistrict()
     {
-        return "District Type: " + dName + 
-               "\nPopulation: " + Double.toString(pop) + 
-               "\nBudget: " + Double.toString(budget)
-             + "\nDeaths: " + Double.toString(death);
+        return "District Type: " + dName + "\nPopulation: " + Double.toString(pop) + "\nBudget: " + Double.toString(budget)
+        + "\nDeaths: " + Double.toString(death);
     }
 }
 
@@ -154,10 +143,6 @@ class RuralDistrict implements District {
     public void setName()
     {
         dName = "Rural District";
-    }
-    public String getName()
-    {
-      return dName;
     }
     public void setPop(double decision)
     {
@@ -197,9 +182,7 @@ class RuralDistrict implements District {
     }
     public String getDistrict()
     {
-        return "District Type: " + dName + 
-               "\nPopulation: " + Double.toString(pop) + 
-               "\nBudget: " + Double.toString(budget)
-             + "\nDeaths: " + Double.toString(death);
+        return "District Type: " + dName + "\nPopulation: " + Double.toString(pop) + "\nBudget: " + Double.toString(budget)
+        + "\nDeaths: " + Double.toString(death);
     }
 }

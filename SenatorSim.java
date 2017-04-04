@@ -29,14 +29,25 @@ public class SenatorSim extends JFrame implements ActionListener
     static JButton democrat = null;
     static JButton republican = null;
     static JButton independent = null;
+    static JButton coastalDistrict = null;
+    static JButton ruralDistrict = null;
+    static JButton urbanDistrict = null;
+    static JButton submit = null;
     static JPanel mjp = null;
     ImageIcon mainImage = new ImageIcon("images/Senator.png");
     ImageIcon mainImage2 = new ImageIcon("images/Simulator.png");
     JLabel mainImageLabel = new JLabel("", mainImage, JLabel.CENTER);
     JLabel mainImageLabel2 = new JLabel("", mainImage2, JLabel.CENTER);
+    int partyFlag = 0;
+    int districtFlag = 0;
     Scanner sc;
     District d;
     Random rand;
+    String districtType = "";
+    String pop = "";
+    String budget = "";
+    String death = "";
+    int whatDistrict;
 
     
     public SenatorSim () {
@@ -94,15 +105,75 @@ public class SenatorSim extends JFrame implements ActionListener
       democrat = new JButton("Democrat");
       republican = new JButton("Republican");
       independent = new JButton("Independent");
+      submit = new JButton("Submit");
       democrat.addActionListener(this);
       republican.addActionListener(this);
       independent.addActionListener(this);
+      submit.addActionListener(this);
       democrat.setBounds(40, 100, 100, 60);
       republican.setBounds(40, 200, 100, 60);
       independent.setBounds(40, 300, 100, 60);
+      submit.setBounds(800, 500, 100, 60);
       mjp.add(democrat);
       mjp.add(republican);
       mjp.add(independent);
+      mjp.add(submit);
+      mjp.revalidate();
+      mjp.repaint();
+    }
+    
+    
+    public void selectDistrict () {
+      mjp.removeAll();
+      coastalDistrict = new JButton("Coastal");
+      ruralDistrict = new JButton("Rural");
+      urbanDistrict = new JButton("Urban");
+      submit = new JButton("Submit");
+      coastalDistrict.addActionListener(this);
+      ruralDistrict.addActionListener(this);
+      urbanDistrict.addActionListener(this);
+      submit.addActionListener(this);
+      coastalDistrict.setBounds(40, 100, 100, 60);
+      ruralDistrict.setBounds(40, 200, 100, 60);
+      urbanDistrict.setBounds(40, 300, 100, 60);
+      submit.setBounds(800, 500, 100, 60);
+      mjp.add(coastalDistrict);
+      mjp.add(ruralDistrict);
+      mjp.add(urbanDistrict);
+      mjp.add(submit);
+      mjp.revalidate();
+      mjp.repaint();
+    }
+    
+    
+    public void demographics(int whatDistrict) {
+      mjp.removeAll();
+      
+      if(whatDistrict == 1)
+      {
+      createDistrictUrban(1); 
+      }
+      if(whatDistrict == 2)
+      {
+      createDistrictRural(1); 
+      }
+      if(whatDistrict == 3)
+      {
+      createDistrictCoastal(3);
+      }
+      //String s = Double.toString(d.getDeath());
+      JLabel type = new JLabel(districtType);
+      JLabel popLabel = new JLabel(pop);
+      JLabel budgetLabel = new JLabel(budget);
+      JLabel deathLabel = new JLabel(death);
+      type.setBounds(300, 50, 500, 500);
+      popLabel.setBounds(300, 100, 500, 500);
+      budgetLabel.setBounds(300, 150, 500, 500);
+      deathLabel.setBounds(300, 200, 500, 500);
+      mjp.add(type);
+      mjp.add(popLabel);
+      mjp.add(budgetLabel);
+      mjp.add(deathLabel);
       mjp.revalidate();
       mjp.repaint();
     }
@@ -118,6 +189,38 @@ public class SenatorSim extends JFrame implements ActionListener
         if(e.getActionCommand() == "New Game"){
           selectParty();
     }
+        if(e.getActionCommand() == "Democrat"){
+          partyFlag = 1;
+          //selectDistrict();
+        }
+        if(e.getActionCommand() == "Republican"){
+          partyFlag = 1;
+        }
+        if(e.getActionCommand() == "Independent"){
+          partyFlag = 1;
+        }
+        if(e.getActionCommand() == "Urban"){
+          //demographics(1);
+          districtFlag = 1;
+        }
+        if(e.getActionCommand() == "Rural"){
+          //demographics(2);
+          districtFlag = 2;
+        }
+        if(e.getActionCommand() == "Coastal"){
+          //demographics(3);
+          districtFlag = 3;
+        }
+        if(e.getActionCommand() == "Submit"){
+          if(partyFlag == 1)
+          {
+           selectDistrict();
+          }
+          if(districtFlag > 0)
+          {
+            demographics(districtFlag);
+          }
+        }
   }
  
 //}
@@ -134,7 +237,7 @@ public class SenatorSim extends JFrame implements ActionListener
         changeBrightness();
         changeSize();
         changeMusic();
-        ss.processCommandLoop();
+        //ss.processCommandLoop();
         
     }
     
@@ -185,6 +288,10 @@ public class SenatorSim extends JFrame implements ActionListener
         d.setBudget(0);
         d.setDeath(0);
         System.out.println(d.getDistrict());    //debug line
+        districtType = d.getName();
+        pop = Double.toString(d.getPop());
+        budget = Double.toString(d.getBudget());
+        death = Double.toString(d.getDeath());
         return d;
     }
     District createDistrictRural (int dType) {
@@ -194,6 +301,10 @@ public class SenatorSim extends JFrame implements ActionListener
         d.setBudget(0);
         d.setDeath(0);
         System.out.println(d.getDistrict());    //debug line
+        districtType = d.getName();
+        pop = Double.toString(d.getPop());
+        budget = Double.toString(d.getBudget());
+        death = Double.toString(d.getDeath());
         return d;
     }
      District createDistrictCoastal (int dType) {
@@ -203,6 +314,10 @@ public class SenatorSim extends JFrame implements ActionListener
         d.setBudget(0);
         d.setDeath(0);
         System.out.println(d.getDistrict());    //debug line
+        districtType = d.getName();
+        pop = Double.toString(d.getPop());
+        budget = Double.toString(d.getBudget());
+        death = Double.toString(d.getDeath());
         return d;
     }
     
