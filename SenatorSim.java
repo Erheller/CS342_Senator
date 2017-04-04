@@ -33,13 +33,26 @@ public class SenatorSim extends JFrame implements ActionListener
     static JButton ruralDistrict = null;
     static JButton urbanDistrict = null;
     static JButton submit = null;
+    static JButton back = null;
+        
     static JPanel mjp = null;
     ImageIcon mainImage = new ImageIcon("images/Senator.png");
     ImageIcon mainImage2 = new ImageIcon("images/Simulator.png");
+    ImageIcon imageparty = null;
+    ImageIcon opt = null;
+    ImageIcon exit = null;
     JLabel mainImageLabel = new JLabel("", mainImage, JLabel.CENTER);
     JLabel mainImageLabel2 = new JLabel("", mainImage2, JLabel.CENTER);
-    int partyFlag = 0;
-    int districtFlag = 0;
+    JLabel imagepartylabel;
+    JLabel imageDistrictlabel;
+    JLabel optionLabel;
+    JLabel exitLabel;
+    JFrame frame;
+    
+    
+    
+    int partyFlag;
+    int districtFlag;
     Scanner sc;
     District d;
     Random rand;
@@ -48,10 +61,26 @@ public class SenatorSim extends JFrame implements ActionListener
     String budget = "";
     String death = "";
     int whatDistrict;
+    int bflag = 0;
+    String imageName = "";
 
     
+    
     public SenatorSim () {
-        // TODO Auto-generated constructor stub
+        mjp = new JPanel();
+        mainMenu(mjp);
+       
+        sc = new Scanner(System.in); //scanner for text input
+        rand = new Random();
+     }
+    
+    public void mainMenu(JPanel mainScreen)
+    {
+        mainScreen.removeAll();
+        
+         
+
+        //configImage();
         newGame = new JButton("New Game");
         load = new JButton("Load Game");
         options = new JButton("Options");
@@ -60,23 +89,25 @@ public class SenatorSim extends JFrame implements ActionListener
         load.addActionListener(this);
         options.addActionListener(this);
         exitGame.addActionListener(this);
-        mjp = new JPanel();
+        
         //Added buttons with easy to read references
-        mjp.setLayout(null);
+        mainScreen.setLayout(null);
+       
         newGame.setBounds(40, 100, 100, 60);
         load.setBounds(40, 200, 100, 60);
         options.setBounds(40, 300, 100, 60);
         exitGame.setBounds(40, 400, 100, 60);
-        mainImageLabel.setBounds(300, 100, 373, 83);
-        mainImageLabel2.setBounds(260, 200, 460, 82);
-        mjp.add(newGame);
-        mjp.add(load);
-        mjp.add(options);
-        mjp.add(exitGame);
-        mjp.add(mainImageLabel);
-        mjp.add(mainImageLabel2);
-        mjp.setBackground(Color.BLACK);
-        //JPanel panel = new JPanel(new BorderLayout());
+        mainImageLabel.setBounds(350, 200, 373, 83);
+        mainImageLabel2.setBounds(310, 300, 460, 82);
+        mainScreen.add(newGame);
+        mainScreen.add(load);
+        mainScreen.add(options);
+        mainScreen.add(exitGame);
+        mainScreen.add(mainImageLabel);
+        mainScreen.add(mainImageLabel2);
+        //mainScreen.add(back);
+        mainScreen.setBackground(Color.BLACK);
+      //JPanel panel = new JPanel(new BorderLayout());
         //panel.add( label, BorderLayout.CENTER ); 
         
         //mjp.drawImage(image, 0, 0, this);
@@ -96,87 +127,240 @@ public class SenatorSim extends JFrame implements ActionListener
         //this.setResizable(false);
         //end of Shanil Code
         //newGame.setBounds(0, 0, 5, 10);
-        sc = new Scanner(System.in); //scanner for text input
-        rand = new Random();
         
+          
     }
-    public void selectParty () {
-      mjp.removeAll();
+   
+    public void configImage()
+    {
+      exit = new ImageIcon("images/close.png");
+      exitLabel = new JLabel("exit", exit, JLabel.CENTER);
+      //exitLabel.addActionListener(this);
+      exitLabel.setBounds(900 , 10 , 75 ,75);
+      mjp.add(exitLabel);
+      
+      opt = new ImageIcon("images/opt.png");
+      optionLabel = new JLabel("", opt, JLabel.CENTER);
+      //optionLabel.addActionListener(this);
+      optionLabel.setBounds(800 , 0 , 100 ,100);
+      mjp.add(optionLabel);
+    }
+  /***********************************************SELECT PARTY********************************************************/
+    public void selectParty()
+    {
+      mjp.removeAll(); // remove all the previous stuff
+      
+      // creating new buttons
+      back = new JButton("<<<<");
       democrat = new JButton("Democrat");
       republican = new JButton("Republican");
       independent = new JButton("Independent");
       submit = new JButton("Submit");
+      // action
+      back.addActionListener(this);
       democrat.addActionListener(this);
       republican.addActionListener(this);
       independent.addActionListener(this);
       submit.addActionListener(this);
+      // location setting
+      back.setBounds(900, 610, 100, 50);
       democrat.setBounds(40, 100, 100, 60);
       republican.setBounds(40, 200, 100, 60);
       independent.setBounds(40, 300, 100, 60);
-      submit.setBounds(800, 500, 100, 60);
+      submit.setBounds(800, 350, 100, 60);
+      // adding all the buttons to jpanel
       mjp.add(democrat);
+      mjp.add(back);
       mjp.add(republican);
       mjp.add(independent);
       mjp.add(submit);
       mjp.revalidate();
       mjp.repaint();
-    }
+      // checking the back flag
+      bflag = 1;                                    
+     }
     
+   
+  /*****************************************************END*********************************************************/
     
+ /************************************************DISTRICT FRAME*****************************************************/
     public void selectDistrict () {
-      mjp.removeAll();
+      mjp.removeAll(); // REMOVING ALL THE PREV COMPONENT
+      //creating new buttons
+      back = new JButton("<<<<");
       coastalDistrict = new JButton("Coastal");
       ruralDistrict = new JButton("Rural");
       urbanDistrict = new JButton("Urban");
       submit = new JButton("Submit");
+      // action
       coastalDistrict.addActionListener(this);
+      back.addActionListener(this);
       ruralDistrict.addActionListener(this);
       urbanDistrict.addActionListener(this);
       submit.addActionListener(this);
+      // location
       coastalDistrict.setBounds(40, 100, 100, 60);
       ruralDistrict.setBounds(40, 200, 100, 60);
       urbanDistrict.setBounds(40, 300, 100, 60);
-      submit.setBounds(800, 500, 100, 60);
+      submit.setBounds(800, 350, 100, 60);
+      back.setBounds(900, 610, 100, 50);
+      // adding to the frame
       mjp.add(coastalDistrict);
       mjp.add(ruralDistrict);
       mjp.add(urbanDistrict);
       mjp.add(submit);
+      mjp.add(back);
+      // repainting
       mjp.revalidate();
       mjp.repaint();
+      // checking the back flag
+      bflag = 2;
     }
+  
+    
+    /******************************************************END*****************************************************/
     
     
+    /**************************************************GAME STATS*************************************************/
+    
+    
+    public void dgScreen()
+    {
+      back = new JButton("<<<<");
+      back.addActionListener(this);
+      JLabel type = new JLabel(districtType);
+      JLabel popLabel = new JLabel(pop);
+      JLabel budgetLabel = new JLabel(budget);
+      JLabel deathLabel = new JLabel(death);
+     // type.setFont(new Font("Serif", Font.PLAIN, 25));
+      type.setFont(type.getFont().deriveFont(64.0f));
+      popLabel.setFont(type.getFont().deriveFont(32.0f));
+      budgetLabel.setFont(type.getFont().deriveFont(32.0f));
+      deathLabel.setFont(type.getFont().deriveFont(32.0f));
+      
+      type.setForeground(Color.red);
+      popLabel.setForeground(Color.blue);
+      budgetLabel.setForeground(Color.blue);
+      deathLabel.setForeground(Color.blue);
+      back.setBounds(900, 610, 100, 50);
+      type.setBounds(300, -100, 600, 600);
+      popLabel.setBounds(300, 0, 600, 600);
+      budgetLabel.setBounds(300, 50, 600, 600);
+      deathLabel.setBounds(300, 100, 600, 600);
+      mjp.add(type);
+      mjp.add(popLabel);
+      mjp.add(budgetLabel);
+      mjp.add(deathLabel);
+      mjp.add(back);
+      mjp.revalidate();
+      mjp.repaint();
+      bflag = 3;
+      
+    }
+   /****************************************************END*****************************************************/ 
+   
+   /************************************************DEMOGRAPHICS************************************************/ 
+     
     public void demographics(int whatDistrict) {
       mjp.removeAll();
       
       if(whatDistrict == 1)
       {
       createDistrictUrban(1); 
+      dgScreen();
       }
       if(whatDistrict == 2)
       {
       createDistrictRural(1); 
+      dgScreen();
       }
       if(whatDistrict == 3)
       {
-      createDistrictCoastal(3);
+      createDistrictCoastal(1);
+      dgScreen();
       }
       //String s = Double.toString(d.getDeath());
-      JLabel type = new JLabel(districtType);
-      JLabel popLabel = new JLabel(pop);
-      JLabel budgetLabel = new JLabel(budget);
-      JLabel deathLabel = new JLabel(death);
-      type.setBounds(300, 50, 500, 500);
-      popLabel.setBounds(300, 100, 500, 500);
-      budgetLabel.setBounds(300, 150, 500, 500);
-      deathLabel.setBounds(300, 200, 500, 500);
-      mjp.add(type);
-      mjp.add(popLabel);
-      mjp.add(budgetLabel);
-      mjp.add(deathLabel);
-      mjp.revalidate();
-      mjp.repaint();
+     
     }
+    
+   /****************************************************END*****************************************************/
+    
+   /**************************************************IMAGES****************************************************/ 
+    
+    public void imagePop() {
+      
+      if( partyFlag == 1) // democratic
+     {
+      selectParty();
+      //adding image to the select party frame
+      imageparty = new ImageIcon("images/obama.jpg");
+      JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
+      imagepartylabel.setBounds(250 , 100 , 500 , 500);
+      mjp.add(imagepartylabel);
+     }
+     if(partyFlag == 2) // republic
+     {
+     selectParty();
+     imageparty = new ImageIcon("images/trump.gif");
+     JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
+     imagepartylabel.setBounds(175 , 0 , 600 , 650);
+     mjp.add(imagepartylabel);
+    }
+     if(partyFlag == 3) // independent
+     {
+     selectParty();
+     imageparty = new ImageIcon("images/bernie.png");
+     JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
+     imagepartylabel.setBounds(300 , 100 , 400 , 400);
+     mjp.add(imagepartylabel);
+     }
+     if(districtFlag == 1) // urban
+     {
+     selectDistrict();
+     imageparty = new ImageIcon("images/urban.jpg");
+     JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
+     imagepartylabel.setBounds(300 , 100 , 400 , 400);
+     mjp.add(imagepartylabel);
+     }
+     if(districtFlag == 2) // rural
+     {
+     selectDistrict();
+     imageparty = new ImageIcon("images/rural.jpg");
+     JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
+     imagepartylabel.setBounds(300 , 100 , 400 , 400);
+     mjp.add(imagepartylabel);
+     }
+     if(districtFlag == 3) // coastal
+     {
+     selectDistrict();
+     imageparty = new ImageIcon("images/coastal.jpg");
+     JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
+     imagepartylabel.setBounds(300 , 100 , 400 , 400);
+     mjp.add(imagepartylabel);
+     }
+   }
+    
+    public void joptionFrame()
+    { 
+      JFrame frame = new JFrame("Input");
+      Object[] choice = {"Hell Yeah","Noo..!","Not smart Enough"};
+      
+      int name = JOptionPane.showOptionDialog(frame, "Are you sure you want to continue?",
+                                               "A Silly Question",
+                                                JOptionPane.YES_NO_CANCEL_OPTION,
+                                               JOptionPane.QUESTION_MESSAGE,
+                                               null,
+                                               choice,
+                                               choice[0]);
+    /*  if(choice[2] == true)
+      {
+        System.exit(0);
+      }*/
+                                               
+      
+    
+    }
+   
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -191,39 +375,64 @@ public class SenatorSim extends JFrame implements ActionListener
     }
         if(e.getActionCommand() == "Democrat"){
           partyFlag = 1;
-          //selectDistrict();
+          imagePop();
         }
         if(e.getActionCommand() == "Republican"){
-          partyFlag = 1;
+          partyFlag = 2;
+          imagePop();
         }
         if(e.getActionCommand() == "Independent"){
-          partyFlag = 1;
+          partyFlag = 3;
+          imagePop();
         }
         if(e.getActionCommand() == "Urban"){
           //demographics(1);
           districtFlag = 1;
+          imagePop();
+           //demographics(districtFlag);
         }
         if(e.getActionCommand() == "Rural"){
-          //demographics(2);
           districtFlag = 2;
+          imagePop();
+           //demographics(districtFlag);
         }
         if(e.getActionCommand() == "Coastal"){
-          //demographics(3);
           districtFlag = 3;
+          imagePop();
+          //demographics(districtFlag);
+         
         }
         if(e.getActionCommand() == "Submit"){
-          if(partyFlag == 1)
+          if(partyFlag > 0)
           {
+            joptionFrame();
            selectDistrict();
           }
           if(districtFlag > 0)
           {
-            demographics(districtFlag);
+             demographics(districtFlag);
+          }
+         
+        }
+          if(e.getActionCommand() == "<<<<")
+          {
+           
+            if(bflag == 1)
+            { 
+              mainMenu(mjp);
+            }
+            if(bflag == 2)
+                 {
+              selectParty();
+                 }
+            if(bflag == 3)
+            {
+              selectDistrict();
+            }
           }
         }
-  }
+  
  
-//}
     
     public void control(){
       
