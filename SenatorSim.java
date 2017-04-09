@@ -35,7 +35,9 @@ public class SenatorSim extends JFrame implements ActionListener
     static JButton submit = null;
     static JButton continueBut = null;
     static JButton back = null;
-    static JButton decisionBut = null;
+    static JButton decisionBut1 = null;
+    static JButton decisionBut2 = null;
+    static JButton decisionBut3 = null;
     static JButton yes = null;
     static JButton no = null;
         
@@ -68,6 +70,7 @@ public class SenatorSim extends JFrame implements ActionListener
     String death = "";
     int whatDistrict;
     int bflag = 0;
+    int dflag = 0; //for printing decision 1, 2 and 3
     int decisionFlag = 0; //for yes and no and for submit button
     String imageName = "";
     String categoryBut = "";
@@ -385,6 +388,7 @@ public class SenatorSim extends JFrame implements ActionListener
     //-------------------------------First question-----------------------------
     public void firstDecision () {
       mjp.removeAll(); // REMOVING ALL THE PREV COMPONENT
+      dflag = 1;
       int index = 0;
       Decision[] decisions = new Decision[3];
       DecisionFactory df = new DecisionFactory();  
@@ -393,29 +397,30 @@ public class SenatorSim extends JFrame implements ActionListener
       decisions[2] = df.kill(d);
        for (int foo = 0; foo < decisions.length; foo++) {
          index = printDecision(decisions[foo], index);
+         dflag++;
         }
       //creating new buttons
-      decisionBut = new JButton();
-      decisionBut.setLayout(new BorderLayout());
-      line1 = new JLabel(categoryBut);
-      line2 = new JLabel(descriptionBut);
-      decisionBut.add(BorderLayout.NORTH,line1);
-      decisionBut.add(BorderLayout.CENTER,line2);
+      decisionBut1 = new JButton("<html>" + categoryBut + "<br/>" + descriptionBut + "</html>");
+      //decisionBut.setLayout(new BorderLayout());
+      //line1 = new JLabel(categoryBut);
+      //line2 = new JLabel(descriptionBut);
+      //decisionBut.add(BorderLayout.NORTH,line1);
+      //decisionBut.add(BorderLayout.CENTER,line2);
       yes = new JButton("Yes");
       no = new JButton("No");
       submit = new JButton("Submit");
       // action
-      decisionBut.addActionListener(this);
+      decisionBut1.addActionListener(this);
       yes.addActionListener(this);
       no.addActionListener(this);
       submit.addActionListener(this);
       // location
-      decisionBut.setBounds(50, 100, 700, 100);
+      decisionBut1.setBounds(50, 100, 700, 100);
       yes.setBounds(40, 500, 100, 60);
       no.setBounds(40, 600, 100, 60);
       submit.setBounds(800, 450, 100, 60);
       // adding to the frame
-      mjp.add(decisionBut);
+      mjp.add(decisionBut1);
       mjp.add(yes);
       mjp.add(no);
       mjp.add(submit);
@@ -625,13 +630,22 @@ public class SenatorSim extends JFrame implements ActionListener
     
     public int printDecision (Decision d, int index) {
         System.out.println("  Type: " + getCategoryString(d.cat));
+        if(dflag == 1)
+        {
         categoryBut = "  Type: " + getCategoryString(d.cat);
+        }
         System.out.println("  " + d.description);
+        if(dflag == 1)
+        {
         descriptionBut = "  " + d.description;
+        }
         for (int foo = 0; foo < d.numDecisions; foo++) {
             index++;
             System.out.println("    " + Integer.toString(index) + ") " + d.decisionDesc[foo]);
+            if(dflag == 1)
+            {
             decisionInfo = decisionInfo + Integer.toString(index) + ") " + d.decisionDesc[foo];
+            }
         }
         
         return index;
@@ -668,9 +682,7 @@ public class SenatorSim extends JFrame implements ActionListener
         
         
         System.out.println("\n\n");
-        
         int index = 0;
-        
         System.out.println("You have " + Integer.toString(decisions.length) + " decisions today.");
         for (int foo = 0; foo < decisions.length; foo++) {
             index = printDecision(decisions[foo], index);
