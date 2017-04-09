@@ -417,6 +417,9 @@ public class SenatorSim extends JFrame implements ActionListener
       yes.addActionListener(this);
       no.addActionListener(this);
       submit.addActionListener(this);
+      decisionBut1.setActionCommand("decision1");
+      decisionBut2.setActionCommand("decision2");
+      decisionBut3.setActionCommand("decision3");
       // location
       decisionBut1.setBounds(50, 100, 700, 100);
       decisionBut2.setBounds(50, 250, 700, 100);
@@ -477,6 +480,21 @@ public class SenatorSim extends JFrame implements ActionListener
           imagePop();
           //demographics(districtFlag);
          
+        }
+        if(e.getActionCommand() == "decision1")
+        {
+          System.out.println("yo");
+          mainMenu(mjp);
+        }
+        if(e.getActionCommand() == "decision2")
+        {
+          System.out.println("yo");
+          mainMenu(mjp);
+        }
+        if(e.getActionCommand() == "decision3")
+        {
+          System.out.println("yo");
+          mainMenu(mjp);
         }
         if(e.getActionCommand() == "yes")
           {
