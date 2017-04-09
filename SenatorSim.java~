@@ -254,6 +254,7 @@ public class SenatorSim extends JFrame implements ActionListener
       mjp.add(back);
       mjp.revalidate();
       mjp.repaint();
+      bflag = 3;
       
     }
    /****************************************************END*****************************************************/ 
@@ -341,13 +342,23 @@ public class SenatorSim extends JFrame implements ActionListener
     
     public void joptionFrame()
     { 
-      String answer[] = { "Yes", "No"};
-      frame = new JFrame("Input");
-      String confirm = (String)JOptionPane.showInputDialog(frame,
-                      "Are you sure you want to continue?",
-                                                   JOptionPane.QUESTION_MESSAGE,
-                                                   null,
-                                                   answer[0]);
+      JFrame frame = new JFrame("Input");
+      Object[] choice = {"Hell Yeah","Noo..!","Not smart Enough"};
+      
+      int name = JOptionPane.showOptionDialog(frame, "Are you sure you want to continue?",
+                                               "A Silly Question",
+                                                JOptionPane.YES_NO_CANCEL_OPTION,
+                                               JOptionPane.QUESTION_MESSAGE,
+                                               null,
+                                               choice,
+                                               choice[0]);
+    /*  if(choice[2] == true)
+      {
+        System.exit(0);
+      }*/
+                                               
+      
+    
     }
    
     
@@ -356,7 +367,7 @@ public class SenatorSim extends JFrame implements ActionListener
     // TODO Auto-generated method stub
     // Created methods in MyCanvas class so I can acess and pass values into the mouse pressed values so the buttons can do
     // what they need to.
-        if(e.getActionCommand() == "Exit Game"||"exit"){
+        if(e.getActionCommand() == "Exit Game"){
         System.exit(0);  
     }
         if(e.getActionCommand() == "New Game"){
@@ -394,6 +405,7 @@ public class SenatorSim extends JFrame implements ActionListener
         if(e.getActionCommand() == "Submit"){
           if(partyFlag > 0)
           {
+            joptionFrame();
            selectDistrict();
           }
           if(districtFlag > 0)

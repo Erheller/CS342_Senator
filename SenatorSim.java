@@ -33,7 +33,11 @@ public class SenatorSim extends JFrame implements ActionListener
     static JButton ruralDistrict = null;
     static JButton urbanDistrict = null;
     static JButton submit = null;
+    static JButton continueBut = null;
     static JButton back = null;
+    static JButton decisionBut = null;
+    static JButton yes = null;
+    static JButton no = null;
         
     static JPanel mjp = null;
     ImageIcon mainImage = new ImageIcon("images/Senator.png");
@@ -47,6 +51,8 @@ public class SenatorSim extends JFrame implements ActionListener
     JLabel imageDistrictlabel;
     JLabel optionLabel;
     JLabel exitLabel;
+    JLabel line1;
+    JLabel line2;
     JFrame frame;
     
     
@@ -62,8 +68,11 @@ public class SenatorSim extends JFrame implements ActionListener
     String death = "";
     int whatDistrict;
     int bflag = 0;
+    int decisionFlag = 0; //for yes and no and for submit button
     String imageName = "";
-
+    String categoryBut = "";
+    String descriptionBut = "";
+    String decisionInfo = "";
     
     
     public SenatorSim () {
@@ -227,7 +236,9 @@ public class SenatorSim extends JFrame implements ActionListener
     public void dgScreen()
     {
       back = new JButton("<<<<");
+      continueBut = new JButton("Continue");
       back.addActionListener(this);
+      continueBut.addActionListener(this);
       JLabel type = new JLabel(districtType);
       JLabel popLabel = new JLabel(pop);
       JLabel budgetLabel = new JLabel(budget);
@@ -242,12 +253,14 @@ public class SenatorSim extends JFrame implements ActionListener
       popLabel.setForeground(Color.blue);
       budgetLabel.setForeground(Color.blue);
       deathLabel.setForeground(Color.blue);
-      back.setBounds(900, 610, 100, 50);
+      back.setBounds(200, 550, 100, 50);
+      continueBut.setBounds(650, 550, 100, 50);
       type.setBounds(300, -100, 600, 600);
       popLabel.setBounds(300, 0, 600, 600);
       budgetLabel.setBounds(300, 50, 600, 600);
       deathLabel.setBounds(300, 100, 600, 600);
       mjp.add(type);
+      mjp.add(continueBut);
       mjp.add(popLabel);
       mjp.add(budgetLabel);
       mjp.add(deathLabel);
@@ -360,8 +373,59 @@ public class SenatorSim extends JFrame implements ActionListener
       
     
     }
+    //---------------------------------Create decision array-----------------------
+    /*public void createDecision() {
+      Decision[] decisions = new Decision[3];
+      DecisionFactory df = new DecisionFactory();
+        
+      decisions[0] = df.vaccination(d);
+      decisions[1] = df.road(d);
+      decisions[2] = df.kill(d);
+    }*/
+    //-------------------------------First question-----------------------------
+    public void firstDecision () {
+      mjp.removeAll(); // REMOVING ALL THE PREV COMPONENT
+      int index = 0;
+      Decision[] decisions = new Decision[3];
+      DecisionFactory df = new DecisionFactory();  
+      decisions[0] = df.vaccination(d);
+      decisions[1] = df.road(d);
+      decisions[2] = df.kill(d);
+       for (int foo = 0; foo < decisions.length; foo++) {
+         index = printDecision(decisions[foo], index);
+        }
+      //creating new buttons
+      decisionBut = new JButton();
+      decisionBut.setLayout(new BorderLayout());
+      line1 = new JLabel(categoryBut);
+      line2 = new JLabel(descriptionBut);
+      decisionBut.add(BorderLayout.NORTH,line1);
+      decisionBut.add(BorderLayout.CENTER,line2);
+      yes = new JButton("Yes");
+      no = new JButton("No");
+      submit = new JButton("Submit");
+      // action
+      decisionBut.addActionListener(this);
+      yes.addActionListener(this);
+      no.addActionListener(this);
+      submit.addActionListener(this);
+      // location
+      decisionBut.setBounds(50, 100, 700, 100);
+      yes.setBounds(40, 500, 100, 60);
+      no.setBounds(40, 600, 100, 60);
+      submit.setBounds(800, 450, 100, 60);
+      // adding to the frame
+      mjp.add(decisionBut);
+      mjp.add(yes);
+      mjp.add(no);
+      mjp.add(submit);
+      // repainting
+      mjp.revalidate();
+      mjp.repaint();
+      // checking the back flag
+    }
    
-    
+    //--------------------------End of first question-------------------------------
     @Override
     public void actionPerformed(ActionEvent e) {
     // TODO Auto-generated method stub
@@ -402,6 +466,14 @@ public class SenatorSim extends JFrame implements ActionListener
           //demographics(districtFlag);
          
         }
+        if(e.getActionCommand() == "yes")
+          {
+            decisionFlag = 1;
+          }
+          if(e.getActionCommand() == "no")
+          {
+            decisionFlag = 2;
+          }
         if(e.getActionCommand() == "Submit"){
           if(partyFlag > 0)
           {
@@ -412,7 +484,15 @@ public class SenatorSim extends JFrame implements ActionListener
           {
              demographics(districtFlag);
           }
-         
+          if(decisionFlag > 0)
+          {
+            //update demographics
+            demographics(districtFlag);
+          }
+          
+        }
+        if(e.getActionCommand() == "Continue"){
+          firstDecision();
         }
           if(e.getActionCommand() == "<<<<")
           {
@@ -430,6 +510,7 @@ public class SenatorSim extends JFrame implements ActionListener
               selectDistrict();
             }
           }
+          
         }
   
  
@@ -544,11 +625,13 @@ public class SenatorSim extends JFrame implements ActionListener
     
     public int printDecision (Decision d, int index) {
         System.out.println("  Type: " + getCategoryString(d.cat));
-        
+        categoryBut = "  Type: " + getCategoryString(d.cat);
         System.out.println("  " + d.description);
+        descriptionBut = "  " + d.description;
         for (int foo = 0; foo < d.numDecisions; foo++) {
             index++;
             System.out.println("    " + Integer.toString(index) + ") " + d.decisionDesc[foo]);
+            decisionInfo = decisionInfo + Integer.toString(index) + ") " + d.decisionDesc[foo];
         }
         
         return index;
