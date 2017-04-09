@@ -73,8 +73,12 @@ public class SenatorSim extends JFrame implements ActionListener
     int dflag = 0; //for printing decision 1, 2 and 3
     int decisionFlag = 0; //for yes and no and for submit button
     String imageName = "";
-    String categoryBut = "";
-    String descriptionBut = "";
+    String categoryBut1 = "";
+    String categoryBut2 = "";
+    String categoryBut3 = "";
+    String descriptionBut1 = "";
+    String descriptionBut2 = "";
+    String descriptionBut3 = "";
     String decisionInfo = "";
     
     
@@ -400,27 +404,30 @@ public class SenatorSim extends JFrame implements ActionListener
          dflag++;
         }
       //creating new buttons
-      decisionBut1 = new JButton("<html>" + categoryBut + "<br/>" + descriptionBut + "</html>");
-      //decisionBut.setLayout(new BorderLayout());
-      //line1 = new JLabel(categoryBut);
-      //line2 = new JLabel(descriptionBut);
-      //decisionBut.add(BorderLayout.NORTH,line1);
-      //decisionBut.add(BorderLayout.CENTER,line2);
+      decisionBut1 = new JButton("<html>" + categoryBut1 + "<br/>" + descriptionBut1 + "</html>");
+      decisionBut2 = new JButton("<html>" + categoryBut2 + "<br/>" + descriptionBut2 + "</html>");
+      decisionBut3 = new JButton("<html>" + categoryBut3 + "<br/>" + descriptionBut3 + "</html>");
       yes = new JButton("Yes");
       no = new JButton("No");
       submit = new JButton("Submit");
       // action
       decisionBut1.addActionListener(this);
+      decisionBut2.addActionListener(this);
+      decisionBut3.addActionListener(this);
       yes.addActionListener(this);
       no.addActionListener(this);
       submit.addActionListener(this);
       // location
       decisionBut1.setBounds(50, 100, 700, 100);
+      decisionBut2.setBounds(50, 250, 700, 100);
+      decisionBut3.setBounds(50, 400, 700, 100);
       yes.setBounds(40, 500, 100, 60);
       no.setBounds(40, 600, 100, 60);
       submit.setBounds(800, 450, 100, 60);
       // adding to the frame
       mjp.add(decisionBut1);
+      mjp.add(decisionBut2);
+      mjp.add(decisionBut3);
       mjp.add(yes);
       mjp.add(no);
       mjp.add(submit);
@@ -632,12 +639,28 @@ public class SenatorSim extends JFrame implements ActionListener
         System.out.println("  Type: " + getCategoryString(d.cat));
         if(dflag == 1)
         {
-        categoryBut = "  Type: " + getCategoryString(d.cat);
+        categoryBut1 = "  Type: " + getCategoryString(d.cat);
+        }
+        if(dflag == 2)
+        {
+        categoryBut2 = "  Type: " + getCategoryString(d.cat);
+        }
+        if(dflag == 3)
+        {
+        categoryBut3 = "  Type: " + getCategoryString(d.cat);
         }
         System.out.println("  " + d.description);
         if(dflag == 1)
         {
-        descriptionBut = "  " + d.description;
+        descriptionBut1 = "  " + d.description;
+        }
+        if(dflag == 2)
+        {
+        descriptionBut2 = "  " + d.description;
+        }
+        if(dflag == 3)
+        {
+        descriptionBut3 = "  " + d.description;
         }
         for (int foo = 0; foo < d.numDecisions; foo++) {
             index++;
@@ -647,7 +670,6 @@ public class SenatorSim extends JFrame implements ActionListener
             decisionInfo = decisionInfo + Integer.toString(index) + ") " + d.decisionDesc[foo];
             }
         }
-        
         return index;
     }
     
