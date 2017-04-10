@@ -407,16 +407,20 @@ public class SenatorSim extends JFrame implements ActionListener
       decisionBut1 = new JButton("<html>" + categoryBut1 + "<br/>" + descriptionBut1 + "</html>");
       decisionBut2 = new JButton("<html>" + categoryBut2 + "<br/>" + descriptionBut2 + "</html>");
       decisionBut3 = new JButton("<html>" + categoryBut3 + "<br/>" + descriptionBut3 + "</html>");
+      /*
       yes = new JButton("Yes");
       no = new JButton("No");
       submit = new JButton("Submit");
+      */
       // action
       decisionBut1.addActionListener(this);
       decisionBut2.addActionListener(this);
       decisionBut3.addActionListener(this);
+      /*
       yes.addActionListener(this);
       no.addActionListener(this);
       submit.addActionListener(this);
+      */
       decisionBut1.setActionCommand("decision1");
       decisionBut2.setActionCommand("decision2");
       decisionBut3.setActionCommand("decision3");
@@ -424,16 +428,20 @@ public class SenatorSim extends JFrame implements ActionListener
       decisionBut1.setBounds(50, 100, 700, 100);
       decisionBut2.setBounds(50, 250, 700, 100);
       decisionBut3.setBounds(50, 400, 700, 100);
+      /*
       yes.setBounds(40, 500, 100, 60);
       no.setBounds(40, 600, 100, 60);
       submit.setBounds(800, 450, 100, 60);
+      */
       // adding to the frame
       mjp.add(decisionBut1);
       mjp.add(decisionBut2);
       mjp.add(decisionBut3);
+      /*
       mjp.add(yes);
       mjp.add(no);
       mjp.add(submit);
+      */
       // repainting
       mjp.revalidate();
       mjp.repaint();
@@ -483,17 +491,17 @@ public class SenatorSim extends JFrame implements ActionListener
         }
         if(e.getActionCommand() == "decision1")
         {
-          System.out.println("yo");
+          System.out.println("Decision 1");
           mainMenu(mjp);
         }
         if(e.getActionCommand() == "decision2")
         {
-          System.out.println("yo");
+          System.out.println("Decision 2");
           mainMenu(mjp);
         }
         if(e.getActionCommand() == "decision3")
         {
-          System.out.println("yo");
+          System.out.println("Decision 3");
           mainMenu(mjp);
         }
         if(e.getActionCommand() == "yes")
