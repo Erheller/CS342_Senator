@@ -16,8 +16,17 @@ import java.awt.BorderLayout;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 import java.io.IOException;
 import javax.swing.*;
+import java.awt.Image;
+import javax.swing.JSlider;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class SenatorSim extends JFrame implements ActionListener
 
@@ -47,19 +56,32 @@ public class SenatorSim extends JFrame implements ActionListener
     ImageIcon imageparty = null;
     ImageIcon opt = null;
     ImageIcon exit = null;
-    JLabel mainImageLabel = new JLabel("", mainImage, JLabel.CENTER);
-    JLabel mainImageLabel2 = new JLabel("", mainImage2, JLabel.CENTER);
+    
+    ImageIcon bgImage = null;
+    ImageIcon avatar = null;
+    
     JLabel imagepartylabel;
+    
+    JLabel bgImagelabel;
+    JLabel avatarlabel;
+
+    //JLabel mainImageLabel = new JLabel("", mainImage, JLabel.CENTER);
+    //JLabel mainImageLabel2 = new JLabel("", mainImage2, JLabel.CENTER);
+    //JLabel imagepartylabel;
     JLabel imageDistrictlabel;
     JLabel optionLabel;
     JLabel exitLabel;
+    
+    JLabel sensim;
+    JSlider slider;
+    
     JLabel line1;
     JLabel line2;
     JFrame frame;
     
     
     
-    int partyFlag;
+    int partyFlag = 0;
     int districtFlag;
     Scanner sc;
     District d;
@@ -68,6 +90,7 @@ public class SenatorSim extends JFrame implements ActionListener
     String pop = "";
     String budget = "";
     String death = "";
+    String imgaeName;
     int whatDistrict;
     int bflag = 0;
     int dflag = 0; //for printing decision 1, 2 and 3
@@ -82,20 +105,56 @@ public class SenatorSim extends JFrame implements ActionListener
     String decisionInfo = "";
     
     
+    int xpos = 0;
+    int ypos = 0;
+    
+    int xmax = 600;
+    int ymax = 600;
+    
+    
     public SenatorSim () {
         mjp = new JPanel();
         mainMenu(mjp);
-       
         sc = new Scanner(System.in); //scanner for text input
         rand = new Random();
      }
     
+    
+    
+  /*  public int buttonpos(int num)
+    {
+      int arrx[] = { 10, 20, 30, 40};
+      return arrx[num];
+     
+//    }   */
+    
+   
+     
     public void mainMenu(JPanel mainScreen)
     {
         mainScreen.removeAll();
         
-         
-
+        bgImage = new ImageIcon("images/bg.jpeg");
+        Image img1 = bgImage.getImage();
+        Image newimg = img1.getScaledInstance(xmax, ymax, java.awt.Image.SCALE_SMOOTH);
+        bgImage = new ImageIcon(newimg);
+        JLabel bgImagelabel = new JLabel("", bgImage, JLabel.CENTER);
+        bgImagelabel.setBounds(0 , 0 , xmax , ymax); 
+        
+        JLabel sensim = new JLabel();
+        sensim.setFont(sensim.getFont().deriveFont(30.0f));
+        sensim.setForeground(Color.cyan.darker());
+        sensim.setText("SENATOR");
+        sensim.setBounds(75, 0 , 200, 200);
+        sensim.setOpaque(false);
+        
+        JLabel sensim1 = new JLabel();
+        sensim1.setFont(sensim1.getFont().deriveFont(30.0f));
+        sensim1.setForeground(Color.cyan.darker());
+        sensim1.setText("SIMULATOR");
+        sensim1.setBounds(325, 0 , 200, 200);
+        sensim1.setOpaque(false);
+        
         //configImage();
         newGame = new JButton("New Game");
         load = new JButton("Load Game");
@@ -105,67 +164,135 @@ public class SenatorSim extends JFrame implements ActionListener
         load.addActionListener(this);
         options.addActionListener(this);
         exitGame.addActionListener(this);
+        //slider.addActionListener(this);
         
         //Added buttons with easy to read references
         mainScreen.setLayout(null);
        
-        newGame.setBounds(40, 100, 100, 60);
-        load.setBounds(40, 200, 100, 60);
-        options.setBounds(40, 300, 100, 60);
-        exitGame.setBounds(40, 400, 100, 60);
-        mainImageLabel.setBounds(350, 200, 373, 83);
-        mainImageLabel2.setBounds(310, 300, 460, 82);
+        newGame.setBounds(50, (ypos + 400), 100, 60);
+        load.setBounds(175, (ypos + 400), 100, 60);
+        options.setBounds(300, (ypos + 400), 100, 60);
+        exitGame.setBounds(425, (ypos + 400), 100, 60);
+        
         mainScreen.add(newGame);
         mainScreen.add(load);
         mainScreen.add(options);
         mainScreen.add(exitGame);
-        mainScreen.add(mainImageLabel);
-        mainScreen.add(mainImageLabel2);
-        //mainScreen.add(back);
+        mainScreen.add(sensim);
+        mainScreen.add(sensim1);
+        //mainScreen.add(slider);
+        //mainScreen.add(avatarlabel);
+        mainScreen.add(bgImagelabel);
         mainScreen.setBackground(Color.BLACK);
-      //JPanel panel = new JPanel(new BorderLayout());
-        //panel.add( label, BorderLayout.CENTER ); 
         
-        //mjp.drawImage(image, 0, 0, this);
-        //mjp.setLayout(new BorderLayout());
-        //mjp.add(newGame,BorderLayout.WEST);
-        //mjp.add(load,BorderLayout.WEST);
-        mjp.setBounds(0, 0, 1000, 700);
-        mjp.setSize(1000,700);
+        mjp.setBounds(0, 0, xmax, ymax);
+        mjp.setSize(xmax,ymax);
   
   
         this.setTitle("Senator Simulator");
-        this.setSize(1000, 700);
+        this.setSize(xmax, ymax);
         this.getContentPane().setBackground(Color.BLACK);
+        // this.setContentPane(new SwingSliderExample())
         this.add(mjp);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        //this.setResizable(false);
-        //end of Shanil Code
-        //newGame.setBounds(0, 0, 5, 10);
-        
-          
-    }
-   
-    public void configImage()
-    {
-      exit = new ImageIcon("images/close.png");
-      exitLabel = new JLabel("exit", exit, JLabel.CENTER);
-      //exitLabel.addActionListener(this);
-      exitLabel.setBounds(900 , 10 , 75 ,75);
-      mjp.add(exitLabel);
       
-      opt = new ImageIcon("images/opt.png");
-      optionLabel = new JLabel("", opt, JLabel.CENTER);
-      //optionLabel.addActionListener(this);
-      optionLabel.setBounds(800 , 0 , 100 ,100);
-      mjp.add(optionLabel);
-    }
+
+
+}       
+          
   /***********************************************SELECT PARTY********************************************************/
+    public void optionScreen()
+    {
+        bgImage = new ImageIcon("images/optionb.jpg");
+        Image img1 = bgImage.getImage();
+        Image newimg = img1.getScaledInstance(xmax, ymax, java.awt.Image.SCALE_SMOOTH);
+        bgImage = new ImageIcon(newimg);
+        JLabel bgImagelabel = new JLabel("", bgImage, JLabel.CENTER);
+        bgImagelabel.setBounds(0 , 0 , xmax , ymax);
+       
+        mjp.removeAll(); // remove all the previous stuff 
+      // creating new buttons
+        
+       JLabel settings = new JLabel();
+       settings.setFont(settings.getFont().deriveFont(40.0f));
+       settings.setForeground(Color.lightGray.darker());
+       settings.setText("SETTINGS");
+       settings.setBounds(200, -50 , 200, 200);
+       settings.setOpaque(false);
+  
+       JLabel resize = new JLabel();
+       resize.setFont(resize.getFont().deriveFont(30.0f));
+       resize.setForeground(Color.lightGray.darker());
+       resize.setText("RESIZE");
+       resize.setBounds(25, 45 , 200, 200);
+       resize.setOpaque(false);
+       
+      JLabel volume = new JLabel();
+      volume.setFont(volume.getFont().deriveFont(30.0f));
+      volume.setForeground(Color.lightGray.darker());
+      volume.setText("VOLUME");
+      volume.setBounds(25, 140 , 200, 200);
+      volume.setOpaque(false);
+
+      JLabel brightness = new JLabel();
+      brightness.setFont(brightness.getFont().deriveFont(30.0f));
+      brightness.setForeground(Color.lightGray.darker());
+      brightness.setText("BRIGHTNESS");
+      brightness.setBounds(25, 230 , 200, 200);
+      brightness.setOpaque(false);
+       
+      JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
+      //slider.setMajorTickSpacing(10);
+      slider.setPaintTicks(true);
+      slider.setSize(200, 200);
+      slider.setLocation(300 , 50);
+      slider.setVisible(true);
+      slider.setOpaque(false);
+     
+      JSlider slider2 = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
+      //slider2.setMajorTickSpacing(10);
+      slider2.setPaintTicks(true);
+      slider2.setSize(200,200);
+      slider2.setLocation(300 , 140);
+      slider2.setVisible(true);
+      slider2.setOpaque(false);
+      
+      JSlider slider3 = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
+      //slider3.setMajorTickSpacing(10);
+      slider3.setPaintTicks(true);
+      slider3.setSize(200, 200);
+      slider3.setLocation(300 , 235);
+      slider3.setVisible(true);
+      slider3.setOpaque(false);
+      
+      back = new JButton("<<<<");
+      
+      back.addActionListener(this);
+      
+      back.setBounds(485, 510, 100, 50);
+      
+      mjp.add(back);
+      mjp.add(settings);
+      mjp.add(slider);
+      mjp.add(slider2);
+      mjp.add(slider3);
+      mjp.add(resize);
+      mjp.add(volume);
+      mjp.add(brightness);
+      mjp.add(bgImagelabel);
+      
+      
+      mjp.revalidate();
+      mjp.repaint();
+      bflag = 1;
+    }
+    
+    
     public void selectParty()
     {
-      mjp.removeAll(); // remove all the previous stuff
-      
+                                         
+      mjp.removeAll(); // remove all the previous stuff 
       // creating new buttons
       back = new JButton("<<<<");
       democrat = new JButton("Democrat");
@@ -179,11 +306,11 @@ public class SenatorSim extends JFrame implements ActionListener
       independent.addActionListener(this);
       submit.addActionListener(this);
       // location setting
-      back.setBounds(900, 610, 100, 50);
+      back.setBounds(485, 510, 100, 50);
       democrat.setBounds(40, 100, 100, 60);
       republican.setBounds(40, 200, 100, 60);
       independent.setBounds(40, 300, 100, 60);
-      submit.setBounds(800, 350, 100, 60);
+      submit.setBounds(485, 200, 100, 60);
       // adding all the buttons to jpanel
       mjp.add(democrat);
       mjp.add(back);
@@ -193,7 +320,7 @@ public class SenatorSim extends JFrame implements ActionListener
       mjp.revalidate();
       mjp.repaint();
       // checking the back flag
-      bflag = 1;                                    
+      bflag = 1; 
      }
     
    
@@ -201,6 +328,7 @@ public class SenatorSim extends JFrame implements ActionListener
     
  /************************************************DISTRICT FRAME*****************************************************/
     public void selectDistrict () {
+      
       mjp.removeAll(); // REMOVING ALL THE PREV COMPONENT
       //creating new buttons
       back = new JButton("<<<<");
@@ -214,12 +342,16 @@ public class SenatorSim extends JFrame implements ActionListener
       ruralDistrict.addActionListener(this);
       urbanDistrict.addActionListener(this);
       submit.addActionListener(this);
+      
+      // button color
+     // back.setBackground(Color.blue);
+      //back.setForeground(Color.LIGHT_GRAY.brighter());
       // location
       coastalDistrict.setBounds(40, 100, 100, 60);
       ruralDistrict.setBounds(40, 200, 100, 60);
       urbanDistrict.setBounds(40, 300, 100, 60);
-      submit.setBounds(800, 350, 100, 60);
-      back.setBounds(900, 610, 100, 50);
+      submit.setBounds(485,200, 100, 60);
+      back.setBounds(485, 510, 100, 50);
       // adding to the frame
       mjp.add(coastalDistrict);
       mjp.add(ruralDistrict);
@@ -230,7 +362,7 @@ public class SenatorSim extends JFrame implements ActionListener
       mjp.revalidate();
       mjp.repaint();
       // checking the back flag
-      bflag = 2;
+      bflag = 2;      
     }
   
     
@@ -242,30 +374,38 @@ public class SenatorSim extends JFrame implements ActionListener
     
     public void dgScreen()
     {
+      bflag=3;
       back = new JButton("<<<<");
       continueBut = new JButton("Continue");
       back.addActionListener(this);
       continueBut.addActionListener(this);
-      JLabel type = new JLabel(districtType);
-      JLabel popLabel = new JLabel(pop);
-      JLabel budgetLabel = new JLabel(budget);
-      JLabel deathLabel = new JLabel(death);
-     // type.setFont(new Font("Serif", Font.PLAIN, 25));
-      type.setFont(type.getFont().deriveFont(64.0f));
-      popLabel.setFont(type.getFont().deriveFont(32.0f));
-      budgetLabel.setFont(type.getFont().deriveFont(32.0f));
-      deathLabel.setFont(type.getFont().deriveFont(32.0f));
       
+      JLabel stats = new JLabel("STATISTICS");
+      JLabel type = new JLabel(districtType);
+      JLabel popLabel = new JLabel("Population: " + pop);
+      JLabel budgetLabel = new JLabel("Budget: " + budget);
+      JLabel deathLabel = new JLabel("Death Rate: " + death);
+    
+      stats.setFont(stats.getFont().deriveFont(40.0f));
+      type.setFont(type.getFont().deriveFont(30.0f));
+      popLabel.setFont(type.getFont().deriveFont(20.0f));
+      budgetLabel.setFont(type.getFont().deriveFont(20.0f));
+      deathLabel.setFont(type.getFont().deriveFont(20.0f));
+      
+      stats.setForeground(Color.yellow.darker());
       type.setForeground(Color.red);
       popLabel.setForeground(Color.blue);
       budgetLabel.setForeground(Color.blue);
       deathLabel.setForeground(Color.blue);
-      back.setBounds(200, 550, 100, 50);
-      continueBut.setBounds(650, 550, 100, 50);
-      type.setBounds(300, -100, 600, 600);
-      popLabel.setBounds(300, 0, 600, 600);
-      budgetLabel.setBounds(300, 50, 600, 600);
-      deathLabel.setBounds(300, 100, 600, 600);
+      stats.setBounds(200, 0, 300, 300);
+      back.setBounds(100, 500, 100, 50);
+      continueBut.setBounds(400, 500, 100, 50);
+      type.setBounds(50, 75 , 300, 300);
+      popLabel.setBounds(50, 150, 300, 300);
+      budgetLabel.setBounds(50, 200, 300, 300);
+      deathLabel.setBounds(50, 250, 300, 300);
+      
+      mjp.add(stats);
       mjp.add(type);
       mjp.add(continueBut);
       mjp.add(popLabel);
@@ -274,7 +414,7 @@ public class SenatorSim extends JFrame implements ActionListener
       mjp.add(back);
       mjp.revalidate();
       mjp.repaint();
-      bflag = 3;
+     
       
     }
    /****************************************************END*****************************************************/ 
@@ -311,75 +451,79 @@ public class SenatorSim extends JFrame implements ActionListener
       
       if( partyFlag == 1) // democratic
      {
+        
       selectParty();
       //adding image to the select party frame
-      imageparty = new ImageIcon("images/obama.jpg");
+      imageparty = new ImageIcon("images/obama1.jpg");
+      Image img3 = imageparty.getImage();
+      Image newimg3 = img3.getScaledInstance(xmax, ymax, java.awt.Image.SCALE_SMOOTH);
+      imageparty = new ImageIcon(newimg3);
       JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
-      imagepartylabel.setBounds(250 , 100 , 500 , 500);
+      imagepartylabel.setBounds(0 , 0 , 600 , 600);
       mjp.add(imagepartylabel);
+      
      }
      if(partyFlag == 2) // republic
      {
      selectParty();
-     imageparty = new ImageIcon("images/trump.gif");
-     JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
-     imagepartylabel.setBounds(175 , 0 , 600 , 650);
-     mjp.add(imagepartylabel);
+     //adding image to the select party frame
+      imageparty = new ImageIcon("images/dtrump.jpg");
+      Image img3 = imageparty.getImage();
+      Image newimg3 = img3.getScaledInstance(xmax, ymax, java.awt.Image.SCALE_SMOOTH);
+      imageparty = new ImageIcon(newimg3);
+      JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
+      imagepartylabel.setBounds(0 , 0 , 600 , 600);
+      mjp.add(imagepartylabel);
     }
      if(partyFlag == 3) // independent
      {
      selectParty();
-     imageparty = new ImageIcon("images/bernie.png");
-     JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
-     imagepartylabel.setBounds(300 , 100 , 400 , 400);
-     mjp.add(imagepartylabel);
+      imageparty = new ImageIcon("images/washington1.gif");
+      Image img3 = imageparty.getImage();
+      Image newimg3 = img3.getScaledInstance(xmax, ymax, java.awt.Image.SCALE_SMOOTH);
+      imageparty = new ImageIcon(newimg3);
+      JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
+      imagepartylabel.setBounds(0 , 0 , 600 , 600);
+      mjp.add(imagepartylabel);
      }
      if(districtFlag == 1) // urban
      {
      selectDistrict();
-     imageparty = new ImageIcon("images/urban.jpg");
-     JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
-     imagepartylabel.setBounds(300 , 100 , 400 , 400);
-     mjp.add(imagepartylabel);
+      imageparty = new ImageIcon("images/urban.jpeg");
+      Image img3 = imageparty.getImage();
+      Image newimg3 = img3.getScaledInstance(xmax, ymax, java.awt.Image.SCALE_SMOOTH);
+      imageparty = new ImageIcon(newimg3);
+      JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
+      imagepartylabel.setBounds(0 , 0 , 600 , 600);
+      mjp.add(imagepartylabel);
      }
      if(districtFlag == 2) // rural
      {
      selectDistrict();
-     imageparty = new ImageIcon("images/rural.jpg");
+     imageparty = new ImageIcon("images/rural.jpeg");
+     Image img3 = imageparty.getImage();
+     Image newimg3 = img3.getScaledInstance(xmax, ymax, java.awt.Image.SCALE_SMOOTH);
+     imageparty = new ImageIcon(newimg3);
      JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
-     imagepartylabel.setBounds(300 , 100 , 400 , 400);
+     imagepartylabel.setBounds(0 , 0 , 600 , 600);
      mjp.add(imagepartylabel);
+     
      }
      if(districtFlag == 3) // coastal
      {
      selectDistrict();
-     imageparty = new ImageIcon("images/coastal.jpg");
+    imageparty = new ImageIcon("images/coast.jpg");
+     Image img3 = imageparty.getImage();
+     Image newimg3 = img3.getScaledInstance(xmax, ymax, java.awt.Image.SCALE_SMOOTH);
+     imageparty = new ImageIcon(newimg3);
      JLabel imagepartylabel = new JLabel("", imageparty, JLabel.CENTER);
-     imagepartylabel.setBounds(300 , 100 , 400 , 400);
+     imagepartylabel.setBounds(0 , 0 , 600 , 600);
      mjp.add(imagepartylabel);
      }
+     
    }
     
-    public void joptionFrame()
-    { 
-      JFrame frame = new JFrame("Input");
-      Object[] choice = {"Hell Yeah","Noo..!","Not smart Enough"};
-      
-      int name = JOptionPane.showOptionDialog(frame, "Are you sure you want to continue?",
-                                               "A Silly Question",
-                                                JOptionPane.YES_NO_CANCEL_OPTION,
-                                               JOptionPane.QUESTION_MESSAGE,
-                                               null,
-                                               choice,
-                                               choice[0]);
-    /*  if(choice[2] == true)
-      {
-        System.exit(0);
-      }*/
-                                               
-      
     
-    }
     //---------------------------------Create decision array-----------------------
     /*public void createDecision() {
       Decision[] decisions = new Decision[3];
@@ -457,7 +601,12 @@ public class SenatorSim extends JFrame implements ActionListener
         if(e.getActionCommand() == "Exit Game"){
         System.exit(0);  
     }
+        if(e.getActionCommand() == "Options"){
+          optionScreen();
+        }
+      
         if(e.getActionCommand() == "New Game"){
+          partyFlag = 0;
           selectParty();
     }
         if(e.getActionCommand() == "Democrat"){
@@ -515,8 +664,7 @@ public class SenatorSim extends JFrame implements ActionListener
         if(e.getActionCommand() == "Submit"){
           if(partyFlag > 0)
           {
-            joptionFrame();
-           selectDistrict();
+            selectDistrict();
           }
           if(districtFlag > 0)
           {
@@ -538,14 +686,17 @@ public class SenatorSim extends JFrame implements ActionListener
             if(bflag == 1)
             { 
               mainMenu(mjp);
+              //bflag--;
             }
             if(bflag == 2)
                  {
               selectParty();
+             
                  }
             if(bflag == 3)
             {
               selectDistrict();
+              //bflag--;
             }
           }
           

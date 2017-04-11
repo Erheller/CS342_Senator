@@ -1,0 +1,11 @@
+ public int buttonpos(int num)
+    {
+      int arrx[] = { 10, 20, 30, 40};
+      return arrx[num];
+     
+    }   
+ 
+ public void main()
+ {
+   System.out.print("hello" + buttonpos(4));
+ }

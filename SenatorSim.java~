@@ -33,7 +33,13 @@ public class SenatorSim extends JFrame implements ActionListener
     static JButton ruralDistrict = null;
     static JButton urbanDistrict = null;
     static JButton submit = null;
+    static JButton continueBut = null;
     static JButton back = null;
+    static JButton decisionBut1 = null;
+    static JButton decisionBut2 = null;
+    static JButton decisionBut3 = null;
+    static JButton yes = null;
+    static JButton no = null;
         
     static JPanel mjp = null;
     ImageIcon mainImage = new ImageIcon("images/Senator.png");
@@ -47,6 +53,8 @@ public class SenatorSim extends JFrame implements ActionListener
     JLabel imageDistrictlabel;
     JLabel optionLabel;
     JLabel exitLabel;
+    JLabel line1;
+    JLabel line2;
     JFrame frame;
     
     
@@ -62,8 +70,16 @@ public class SenatorSim extends JFrame implements ActionListener
     String death = "";
     int whatDistrict;
     int bflag = 0;
+    int dflag = 0; //for printing decision 1, 2 and 3
+    int decisionFlag = 0; //for yes and no and for submit button
     String imageName = "";
-
+    String categoryBut1 = "";
+    String categoryBut2 = "";
+    String categoryBut3 = "";
+    String descriptionBut1 = "";
+    String descriptionBut2 = "";
+    String descriptionBut3 = "";
+    String decisionInfo = "";
     
     
     public SenatorSim () {
@@ -227,7 +243,9 @@ public class SenatorSim extends JFrame implements ActionListener
     public void dgScreen()
     {
       back = new JButton("<<<<");
+      continueBut = new JButton("Continue");
       back.addActionListener(this);
+      continueBut.addActionListener(this);
       JLabel type = new JLabel(districtType);
       JLabel popLabel = new JLabel(pop);
       JLabel budgetLabel = new JLabel(budget);
@@ -242,12 +260,14 @@ public class SenatorSim extends JFrame implements ActionListener
       popLabel.setForeground(Color.blue);
       budgetLabel.setForeground(Color.blue);
       deathLabel.setForeground(Color.blue);
-      back.setBounds(900, 610, 100, 50);
+      back.setBounds(200, 550, 100, 50);
+      continueBut.setBounds(650, 550, 100, 50);
       type.setBounds(300, -100, 600, 600);
       popLabel.setBounds(300, 0, 600, 600);
       budgetLabel.setBounds(300, 50, 600, 600);
       deathLabel.setBounds(300, 100, 600, 600);
       mjp.add(type);
+      mjp.add(continueBut);
       mjp.add(popLabel);
       mjp.add(budgetLabel);
       mjp.add(deathLabel);
@@ -360,8 +380,75 @@ public class SenatorSim extends JFrame implements ActionListener
       
     
     }
+    //---------------------------------Create decision array-----------------------
+    /*public void createDecision() {
+      Decision[] decisions = new Decision[3];
+      DecisionFactory df = new DecisionFactory();
+        
+      decisions[0] = df.vaccination(d);
+      decisions[1] = df.road(d);
+      decisions[2] = df.kill(d);
+    }*/
+    //-------------------------------First question-----------------------------
+    public void firstDecision () {
+      mjp.removeAll(); // REMOVING ALL THE PREV COMPONENT
+      dflag = 1;
+      int index = 0;
+      Decision[] decisions = new Decision[3];
+      DecisionFactory df = new DecisionFactory();  
+      decisions[0] = df.vaccination(d);
+      decisions[1] = df.road(d);
+      decisions[2] = df.kill(d);
+       for (int foo = 0; foo < decisions.length; foo++) {
+         index = printDecision(decisions[foo], index);
+         dflag++;
+        }
+      //creating new buttons
+      decisionBut1 = new JButton("<html>" + categoryBut1 + "<br/>" + descriptionBut1 + "</html>");
+      decisionBut2 = new JButton("<html>" + categoryBut2 + "<br/>" + descriptionBut2 + "</html>");
+      decisionBut3 = new JButton("<html>" + categoryBut3 + "<br/>" + descriptionBut3 + "</html>");
+      /*
+      yes = new JButton("Yes");
+      no = new JButton("No");
+      submit = new JButton("Submit");
+      */
+      // action
+      decisionBut1.addActionListener(this);
+      decisionBut2.addActionListener(this);
+      decisionBut3.addActionListener(this);
+      /*
+      yes.addActionListener(this);
+      no.addActionListener(this);
+      submit.addActionListener(this);
+      */
+      decisionBut1.setActionCommand("decision1");
+      decisionBut2.setActionCommand("decision2");
+      decisionBut3.setActionCommand("decision3");
+      // location
+      decisionBut1.setBounds(50, 100, 700, 100);
+      decisionBut2.setBounds(50, 250, 700, 100);
+      decisionBut3.setBounds(50, 400, 700, 100);
+      /*
+      yes.setBounds(40, 500, 100, 60);
+      no.setBounds(40, 600, 100, 60);
+      submit.setBounds(800, 450, 100, 60);
+      */
+      // adding to the frame
+      mjp.add(decisionBut1);
+      mjp.add(decisionBut2);
+      mjp.add(decisionBut3);
+      /*
+      mjp.add(yes);
+      mjp.add(no);
+      mjp.add(submit);
+      */
+      // repainting
+      mjp.revalidate();
+      mjp.repaint();
+      // checking the back flag
+    }
    
-    
+    //--------------------------End of first question-------------------------------
     @Override
     public void actionPerformed(ActionEvent e) {
     // TODO Auto-generated method stub
@@ -402,6 +489,29 @@ public class SenatorSim extends JFrame implements ActionListener
           //demographics(districtFlag);
          
         }
+        if(e.getActionCommand() == "decision1")
+        {
+          System.out.println("Decision 1");
+          mainMenu(mjp);
+        }
+        if(e.getActionCommand() == "decision2")
+        {
+          System.out.println("Decision 2");
+          mainMenu(mjp);
+        }
+        if(e.getActionCommand() == "decision3")
+        {
+          System.out.println("Decision 3");
+          mainMenu(mjp);
+        }
+        if(e.getActionCommand() == "yes")
+          {
+            decisionFlag = 1;
+          }
+          if(e.getActionCommand() == "no")
+          {
+            decisionFlag = 2;
+          }
         if(e.getActionCommand() == "Submit"){
           if(partyFlag > 0)
           {
@@ -412,7 +522,15 @@ public class SenatorSim extends JFrame implements ActionListener
           {
              demographics(districtFlag);
           }
-         
+          if(decisionFlag > 0)
+          {
+            //update demographics
+            demographics(districtFlag);
+          }
+          
+        }
+        if(e.getActionCommand() == "Continue"){
+          firstDecision();
         }
           if(e.getActionCommand() == "<<<<")
           {
@@ -430,6 +548,7 @@ public class SenatorSim extends JFrame implements ActionListener
               selectDistrict();
             }
           }
+          
         }
   
  
@@ -544,13 +663,39 @@ public class SenatorSim extends JFrame implements ActionListener
     
     public int printDecision (Decision d, int index) {
         System.out.println("  Type: " + getCategoryString(d.cat));
-        
+        if(dflag == 1)
+        {
+        categoryBut1 = "  Type: " + getCategoryString(d.cat);
+        }
+        if(dflag == 2)
+        {
+        categoryBut2 = "  Type: " + getCategoryString(d.cat);
+        }
+        if(dflag == 3)
+        {
+        categoryBut3 = "  Type: " + getCategoryString(d.cat);
+        }
         System.out.println("  " + d.description);
+        if(dflag == 1)
+        {
+        descriptionBut1 = "  " + d.description;
+        }
+        if(dflag == 2)
+        {
+        descriptionBut2 = "  " + d.description;
+        }
+        if(dflag == 3)
+        {
+        descriptionBut3 = "  " + d.description;
+        }
         for (int foo = 0; foo < d.numDecisions; foo++) {
             index++;
             System.out.println("    " + Integer.toString(index) + ") " + d.decisionDesc[foo]);
+            if(dflag == 1)
+            {
+            decisionInfo = decisionInfo + Integer.toString(index) + ") " + d.decisionDesc[foo];
+            }
         }
-        
         return index;
     }
     
@@ -585,9 +730,7 @@ public class SenatorSim extends JFrame implements ActionListener
         
         
         System.out.println("\n\n");
-        
         int index = 0;
-        
         System.out.println("You have " + Integer.toString(decisions.length) + " decisions today.");
         for (int foo = 0; foo < decisions.length; foo++) {
             index = printDecision(decisions[foo], index);
