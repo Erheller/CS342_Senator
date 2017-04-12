@@ -56,6 +56,7 @@ public class SenatorSim extends JFrame implements ActionListener
     ImageIcon imageparty = null;
     ImageIcon opt = null;
     ImageIcon exit = null;
+    ImageIcon buttonbg = null;
     
     ImageIcon bgImage = null;
     ImageIcon avatar = null;
@@ -63,6 +64,7 @@ public class SenatorSim extends JFrame implements ActionListener
     JLabel imagepartylabel;
     
     JLabel bgImagelabel;
+    JLabel buttonbglabel;
     JLabel avatarlabel;
 
     //JLabel mainImageLabel = new JLabel("", mainImage, JLabel.CENTER);
@@ -156,10 +158,33 @@ public class SenatorSim extends JFrame implements ActionListener
         sensim1.setOpaque(false);
         
         //configImage();
-        newGame = new JButton("New Game");
-        load = new JButton("Load Game");
-        options = new JButton("Options");
-        exitGame = new JButton("Exit Game");
+        buttonbg = new ImageIcon("images/icon1.png");
+        Image img3 = buttonbg.getImage();
+        Image newimg3 = img3.getScaledInstance(100, 60, java.awt.Image.SCALE_SMOOTH);
+        buttonbg = new ImageIcon(newimg3);
+      
+        newGame = new JButton("New Game" , buttonbg );
+        newGame.setFont(sensim.getFont().deriveFont(12.3f));
+        newGame.setForeground(Color.black.darker());
+        newGame.setHorizontalTextPosition(SwingConstants.CENTER);
+        
+        load = new JButton("Load Game" , buttonbg);
+        load.setFont(sensim.getFont().deriveFont(12.3f));
+        load.setForeground(Color.black.darker());
+        load.setHorizontalTextPosition(SwingConstants.CENTER);
+        
+        
+        options = new JButton("Options" , buttonbg);
+        options.setFont(sensim.getFont().deriveFont(12.4f));
+        options.setForeground(Color.black.darker());
+        options.setHorizontalTextPosition(SwingConstants.CENTER);
+        
+        exitGame = new JButton("Exit Game", buttonbg);
+        exitGame.setFont(sensim.getFont().deriveFont(12.4f));
+        exitGame.setForeground(Color.black.darker());
+        exitGame.setHorizontalTextPosition(SwingConstants.CENTER);
+        
+        
         newGame.addActionListener(this);
         load.addActionListener(this);
         options.addActionListener(this);
@@ -168,6 +193,13 @@ public class SenatorSim extends JFrame implements ActionListener
         
         //Added buttons with easy to read references
         mainScreen.setLayout(null);
+        
+       
+        
+       /* newGame.setIcon(buttonbg);
+      newGame.setForeground(Color.black);
+        newGame.setText("New Game");
+        */
        
         newGame.setBounds(50, (ypos + 400), 100, 60);
         load.setBounds(175, (ypos + 400), 100, 60);
