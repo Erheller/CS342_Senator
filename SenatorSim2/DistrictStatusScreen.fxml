@@ -8,8 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="senatorsim2.SenatorSim2">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="100.0" prefWidth="800.0">
          <center>
@@ -32,58 +31,58 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="400.0" text="District Name:">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="District Name:" textAlignment="RIGHT" wrappingWidth="381.54150390625">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Chalkduster" size="36.0" />
                </font>
-            </TextField>
-            <TextField alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="400.0" text="Population:" GridPane.rowIndex="1">
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Population:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="1">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Chalkduster" size="36.0" />
                </font>
-            </TextField>
-            <TextField alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="400.0" text="Death Rate:" GridPane.rowIndex="2">
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Death Rate:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="2">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Chalkduster" size="36.0" />
                </font>
-            </TextField>
-            <TextField alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="400.0" text="Budget:" GridPane.rowIndex="3">
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Budget:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="3">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Chalkduster" size="36.0" />
                </font>
-            </TextField>
-            <TextField fx:id="textDistrictName" prefHeight="90.0" prefWidth="400.0" text="placeholder" GridPane.columnIndex="1">
+            </Text>
+            <Text fx:id="textDistrictName" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Chalkduster" size="36.0" />
                </font>
-            </TextField>
-            <TextField fx:id="textPopulation" prefHeight="90.0" prefWidth="400.0" text="placeholder" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            </Text>
+            <Text fx:id="textPopulation" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Chalkduster" size="36.0" />
                </font>
-            </TextField>
-            <TextField fx:id="textDeathRate" prefHeight="90.0" prefWidth="400.0" text="placeholder" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            </Text>
+            <Text fx:id="textDeathRate" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Chalkduster" size="36.0" />
                </font>
-            </TextField>
-            <TextField fx:id="textBudget" prefHeight="90.0" prefWidth="400.0" text="placeholder" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            </Text>
+            <Text fx:id="textBudget" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Chalkduster" size="36.0" />
                </font>
-            </TextField>
+            </Text>
          </children>
       </GridPane>
       <BorderPane layoutX="150.0" layoutY="510.0" prefHeight="69.0" prefWidth="500.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
          <left>
-            <Button fx:id="toSenatorSelectScreen" mnemonicParsing="false" onAction="#districtSelectButtonClicked" prefHeight="100.0" prefWidth="161.0" text="Back" BorderPane.alignment="CENTER">
+            <Button fx:id="toTitleScreen" mnemonicParsing="false" onAction="#senatorSelectButtonClicked" prefHeight="100.0" prefWidth="161.0" text="Exit to Main Menu" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
             </Button>
          </left>
          <right>
-            <Button fx:id="confirmSenatorDistrict" disable="true" mnemonicParsing="false" onAction="#districtSelectButtonClicked" prefHeight="100.0" prefWidth="161.0" text="Confirm" BorderPane.alignment="CENTER" />
+            <Button fx:id="toDecisionScreen" mnemonicParsing="false" onAction="#districtDemographicsButtonClicked" prefHeight="100.0" prefWidth="161.0" text="Confirm" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
    </children>

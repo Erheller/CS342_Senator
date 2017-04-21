@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 
 
@@ -57,8 +58,19 @@ public class SenatorSim2 extends Application {
     @FXML
     private RadioButton selectUrban;
     @FXML
-    private TextField textDistrictName;
-    
+    private Text textDistrictName;
+    @FXML
+    private Text textPopulation;    
+    @FXML
+    private Text textDeathRate;    
+    @FXML
+    private Text textBudget;
+    @FXML
+    private Button toDecisionScreen;
+
+
+
+
     
     //public Scene scene;
     public Scene titleScene;
@@ -75,13 +87,21 @@ public class SenatorSim2 extends Application {
     @Override
     public void start(Stage newStage) throws Exception {
         //make the scene here
-        Parent root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
+        
+        
+        //Parent root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TitleScreen.fxml"));
+        loader.setController(this);
+        Parent root = loader.load();
+        
         Scene scene = new Scene(root);
-
+              
+        
         //set the stage to be the title scene
         newStage.setScene(scene);
         //newStage.setScene(senatorSelectScene);
         newStage.show();
+        
     }
 
     /**
@@ -92,16 +112,30 @@ public class SenatorSim2 extends Application {
     }
     
     public void loadScene (ActionEvent e, String sceneName) throws Exception {
-            //create the new scene
-            Scene newScene;
-            Parent root = FXMLLoader.load(getClass().getResource(sceneName));
-            newScene = new Scene(root);
-            
-            //get the stage
-            Stage stage = (Stage) ((Button) e.getSource()).getScene().getWindow();
-            
-            //set the stage to the new scene
-            stage.setScene(newScene);
+        //create the new scene
+        Scene newScene;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
+        loader.setController(this);
+        Parent root = loader.load();
+
+
+        //Parent root = FXMLLoader.load(getClass().getResource(sceneName));
+
+        newScene = new Scene(root);
+
+        //get the stage
+        Stage stage = (Stage) ((Button) e.getSource()).getScene().getWindow();
+
+        //set the stage to the new scene
+        stage.setScene(newScene);
+
+
+
+        //if the scene is the demographics scene, update it
+        if (sceneName == "DistrictStatusScreen.fxml") {
+            this.updateDemographicScreen();                
+        }
     }
     
     public void titleScreenButtonClicked (ActionEvent e) throws Exception{
@@ -163,7 +197,9 @@ public class SenatorSim2 extends Application {
             System.out.println("Confirm");
             
             //create the district here
-            d = createDistrict (districtFlag);
+            this.d = createDistrict (districtFlag);
+            //System.out.println(this.d.getDistrict());
+            this.loadScene(e, "DistrictStatusScreen.fxml");
         }
     }
     
@@ -185,6 +221,27 @@ public class SenatorSim2 extends Application {
             this.districtFlag = districtType.URBAN;            
             confirmSenatorDistrict.setDisable(false);
         }  
+    }
+    
+    public void districtDemographicsButtonClicked (ActionEvent e) {
+        if (e.getSource() == toDecisionScreen) {
+            //load the next scene
+            System.out.println("Loading next scene");
+        }
+        
+    }
+    
+    public void updateDemographicScreen () {
+        textDistrictName.setText(d.getName());
+        /*
+        double stuff = d.getPop();
+        int stuff2 = (int)stuff;
+        String stuff3 = Integer.toString(stuff2);
+        */
+        textPopulation.setText(Integer.toString((int)d.getPop()));
+        textDeathRate.setText(Integer.toString((int)d.getDeath()));
+        textBudget.setText(Integer.toString((int)d.getBudget()));
+
     }
     
     
