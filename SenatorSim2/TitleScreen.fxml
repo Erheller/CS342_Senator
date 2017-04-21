@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="senatorsim2.SenatorSim2">
+    <children>
+      <HBox layoutX="100.0" layoutY="395.0" prefHeight="74.0" prefWidth="600.0" spacing="40.0" AnchorPane.bottomAnchor="100.0">
+         <children>
+            <Button fx:id="toSenatorSelectScreen" mnemonicParsing="false" onAction="#titleScreenButtonClicked" prefHeight="74.0" prefWidth="120.0" text="New Game" />
+            <Button fx:id="loadGame" mnemonicParsing="false" onAction="#titleScreenButtonClicked" prefHeight="74.0" prefWidth="120.0" text="Load Game" />
+            <Button fx:id="options" mnemonicParsing="false" onAction="#titleScreenButtonClicked" prefHeight="74.0" prefWidth="120.0" text="Options" />
+            <Button fx:id="exitToDesktop" mnemonicParsing="false" onAction="#titleScreenButtonClicked" prefHeight="74.0" prefWidth="120.0" text="Exit to Desktop" />
+         </children>
+      </HBox>
+    </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>
