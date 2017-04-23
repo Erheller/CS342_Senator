@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 
@@ -67,10 +68,27 @@ public class SenatorSim2 extends Application {
     private Text textBudget;
     @FXML
     private Button toDecisionScreen;
-
-
-
-
+    
+    //decision screen components
+    @FXML
+    private Button decision0Button;
+    @FXML
+    private Button decision1Button;
+    @FXML
+    private Button decision2Button;
+    @FXML
+    private Button decision3Button;
+    //decision screen popup components
+    @FXML
+    private Pane decisionPopUp;
+    @FXML
+    private Text decisionDescription;
+    @FXML
+    private Button decisionAction0;
+    @FXML
+    private Button decisionAction1;
+    @FXML
+    private Button decisionReturn;
     
     //public Scene scene;
     public Scene titleScene;
@@ -83,6 +101,12 @@ public class SenatorSim2 extends Application {
     
     //district
     District d;
+    
+    //decision array
+    Decision [] decisionArray;
+    DecisionFactory df = new DecisionFactory();
+    
+    int decisionIndex;
     
     @Override
     public void start(Stage newStage) throws Exception {
@@ -198,8 +222,19 @@ public class SenatorSim2 extends Application {
             
             //create the district here
             this.d = createDistrict (districtFlag);
-            //System.out.println(this.d.getDistrict());
+            
+            //let's make the array of decisions
+            this.decisionArray = new Decision[4];
+            //okay, let's hardcode 4 decisions in that array
+            this.decisionArray[0] = df.vaccination(d);
+            this.decisionArray[1] = df.road(d);
+            this.decisionArray[2] = df.kill(d);
+            this.decisionArray[3] = df.amazonTax(d);
+            
+            //load the next scene
             this.loadScene(e, "DistrictStatusScreen.fxml");
+            
+            
         }
     }
     
@@ -223,10 +258,11 @@ public class SenatorSim2 extends Application {
         }  
     }
     
-    public void districtDemographicsButtonClicked (ActionEvent e) {
+    public void districtDemographicsButtonClicked (ActionEvent e) throws Exception {
         if (e.getSource() == toDecisionScreen) {
             //load the next scene
-            System.out.println("Loading next scene");
+            System.out.println("Loading decision scene");
+            this.loadScene(e, "DecisionScreen.fxml");
         }
         
     }
@@ -245,8 +281,67 @@ public class SenatorSim2 extends Application {
     }
     
     
-    
-    
+    public void decisionScreenButtonClicked (ActionEvent e) throws Exception {
+        if (e.getSource() == decision0Button) {
+            System.out.println("Decision 0 clicked");
+            updateDecisionPopup(this.decisionArray[0]);
+            this.decisionIndex = 0;            
+            System.out.println("Setting popup to be visible");
+            decisionPopUp.setVisible(true);
+        }
+        else if (e.getSource() == decision1Button) {
+            System.out.println("Decision 1 clicked");
+            updateDecisionPopup(this.decisionArray[1]);
+            this.decisionIndex = 1;
+            System.out.println("Setting popup to be visible");
+            decisionPopUp.setVisible(true);
+        }        
+        else if (e.getSource() == decision2Button) {
+            System.out.println("Decision 2 clicked");
+            updateDecisionPopup(this.decisionArray[2]);
+            this.decisionIndex = 2;
+            System.out.println("Setting popup to be visible");
+            decisionPopUp.setVisible(true);
+        } 
+        else if (e.getSource() == decision3Button) {
+            System.out.println("Decision 3 clicked");
+            updateDecisionPopup(this.decisionArray[3]);
+            this.decisionIndex = 3;
+            System.out.println("Setting popup to be visible");
+            decisionPopUp.setVisible(true);
+        } 
+        
+        
+        //popup buttons
+        else if (e.getSource() == decisionReturn) {
+            System.out.println("Setting popup to be invisible");
+            decisionPopUp.setVisible(false);
+        } 
+        else if (e.getSource() == decisionAction0) {
+            //do the action
+            System.out.println("Doing action 0");
+            this.decisionArray[this.decisionIndex].behavior.AcceptDecision(d);
+            
+            //return to the demographics screen
+            this.loadScene(e, "DistrictStatusScreen.fxml");
+        }
+        else if (e.getSource() == decisionAction1) {
+            //do the action
+            System.out.println("Doing action 1");
+            this.decisionArray[this.decisionIndex].behavior.IgnoreDecision(d);
+            
+            //return to the demographics screen
+            this.loadScene(e, "DistrictStatusScreen.fxml");
+        }
+    }
+        
+    private void updateDecisionPopup (Decision dec) {
+        decisionDescription.setText(dec.getDescription());  //set description
+        //descriptions for buttons
+        decisionAction0.setText(dec.getdecisionDesc(0));
+        decisionAction1.setText(dec.getdecisionDesc(1));
+        
+    } 
     
     
     
