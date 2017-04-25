@@ -184,7 +184,28 @@ public class DecisionFactory {
  }
  
  
- 
+ public Decision ratInfestation (District d) {
+  //2 decisions
+        String descString = "District has an infestation of rats";
+        String[] decisionDescString = packageStrings (
+          "Get exterminators and professionals to take care of this issue",
+          "People can take care of themselves just have signs posted around");
+  String[] outcomeDescString = packageStrings (
+    "Public is happy, lost some money in the budget but it was worth it.",
+    "Death happened and bad health conditions of many. Lost a good amount of the population");
+  return new Decision(new DratInfestation(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
+ }
+ class DratInfestation implements Behavior {
+  //[DOCUMENTATION]
+     public void AcceptDecision(District d) {
+      d.updateBudget(d.getBudget() - 100000);
+     }
+     //[DOCUMENTATION]
+     public void IgnoreDecision(District d) {
+      d.updatePop(d.getPop() / 2);
+      d.updateDeath(d.getDeath() + 125000 );
+     }
+ }
  //template
  /*
  public Decision ["NAMEOFDECISION"] (District d) {

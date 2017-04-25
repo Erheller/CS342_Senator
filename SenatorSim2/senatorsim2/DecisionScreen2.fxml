@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="800.0" AnchorPane.topAnchor="10.0">
+         <center>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day X" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Text>
+         </center>
+         <bottom>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Make a Decision" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Text>
+         </bottom>
+      </BorderPane>
+      <VBox layoutX="155.0" layoutY="152.0" prefHeight="424.0" prefWidth="500.0" spacing="40.0" AnchorPane.bottomAnchor="24.0">
+         <children>
+            <Button fx:id="decision0Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="DECISION0_CATEGORY" textAlignment="CENTER">
+               <font>
+                  <Font name="Menlo Regular" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="decision1Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="DECISION1_CATEGORY" textAlignment="CENTER">
+               <font>
+                  <Font name="Menlo Regular" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="decision2Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="DECISION2_CATEGORY" textAlignment="CENTER">
+               <font>
+                  <Font name="Menlo Regular" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="decision3Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="DECISION3_CATEGORY" textAlignment="CENTER">
+               <font>
+                  <Font name="Menlo Regular" size="36.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Pane fx:id="decisionPopUp" layoutX="105.0" layoutY="50.0" prefHeight="450.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#aeaeae" height="450.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+            <VBox prefHeight="450.0" prefWidth="600.0" spacing="20.0">
+               <children>
+                  <Text fx:id="decisionDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="This is the description of the decision the player has to make. Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah" textAlignment="CENTER" wrappingWidth="550.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Text>
+                  <Button fx:id="decisionAction0" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="75.0" prefWidth="550.0" text="This is a description of the first option a player can choose." textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="decisionAction1" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="75.0" prefWidth="550.0" text="This is a description of the second option a player can choose." textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="decisionReturn" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="42.0" prefWidth="550.0" text="Return without making a decision" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="25.0" top="15.0" />
+               </padding>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
