@@ -206,6 +206,99 @@ public class DecisionFactory {
       d.updateDeath(d.getDeath() + 125000 );
      }
  }
+ 
+ 
+ public Decision publicTransportation (District d) {
+  //2 decisions
+        String descString = "Public transit authority requires more money.";
+        String[] decisionDescString = packageStrings (
+          "Give them more money.",
+          "They're lying, do not give them money");
+  String[] outcomeDescString = packageStrings (
+    "More trains are added and more people come to the district.",
+    "People cannot afford moving around, so many leave the district.");
+  return new Decision(new DpublicTransportation(), Category.Infrastructure, descString, 2, decisionDescString, outcomeDescString, d);
+ }
+ class DpublicTransportation implements Behavior {
+  //[DOCUMENTATION]
+     public void AcceptDecision(District d) {
+      d.updateBudget(d.getBudget() - 435042);   
+     }
+     //[DOCUMENTATION]
+     public void IgnoreDecision(District d) {
+      d.updatePop(d.getPop() / 3);   
+     }
+ }
+ 
+ 
+ public Decision serialKiller (District d) {
+  //2 decisions
+        String descString = "A serial killer is on the loose killing innocents.";
+        String[] decisionDescString = packageStrings (
+          "Send more law enforcement officers to take care of the situation.",
+          "Let the people know you care but we have no money.");
+  String[] outcomeDescString = packageStrings (
+    "Good men die but the job is done, the serial killer is put to death sentence.",
+    "The serial killed kills half your population before the people find him.");
+  return new Decision(new dserialKiller(), Category.Crime, descString, 2, decisionDescString, outcomeDescString, d);
+ }
+ class dserialKiller implements Behavior {
+  //[DOCUMENTATION]
+     public void AcceptDecision(District d) {
+         d.updatePop(d.getPop() - 50);
+     }
+     //[DOCUMENTATION]
+     public void IgnoreDecision(District d) {
+         d.updatePop(d.getPop() / 2);
+     }
+ }
+ 
+ 
+  public Decision riot (District d) {
+  //2 decisions
+        String descString = "People are rebelling against your leadership.";
+        String[] decisionDescString = packageStrings (
+          "Give law enforcement the green light for more severe actions",
+          "Try to quell the anger of the people with a public speech.");
+  String[] outcomeDescString = packageStrings (
+    "Many people die but you are still in control.",
+    "People feel more compassionate and give you a second chance, tourism increases.");
+  return new Decision(new driot(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
+ }
+ class driot implements Behavior {
+  //[DOCUMENTATION]
+     public void AcceptDecision(District d) {
+          d.updatePop(d.getPop() - 555394);
+     }
+     //[DOCUMENTATION]
+     public void IgnoreDecision(District d) {
+          d.updatePop(d.getPop() + 210);
+     }
+ }
+ 
+ 
+  public Decision stocks (District d) {
+  //2 decisions
+        String descString = "Stocks for many companies in your district are falling";
+        String[] decisionDescString = packageStrings (
+          "Invest in them with the districts money.",
+          "Ignore it, happens all the time they drop then they rise.");
+  String[] outcomeDescString = packageStrings (
+    "Stocks rise again but many public resources have less money for this quarter.",
+    "Many corporations close down, people lost jobs and deaths increase.");
+  return new Decision(new dstocks(), Category.Commerce, descString, 2, decisionDescString, outcomeDescString, d);
+ }
+ class dstocks implements Behavior {
+  //[DOCUMENTATION]
+     public void AcceptDecision(District d) {
+          d.updateBudget(d.getBudget() - 334500);
+     }
+     //[DOCUMENTATION]
+     public void IgnoreDecision(District d) {
+          d.updateDeath(d.getDeath() + 335000);
+          d.updatePop(d.getPop() - d.getDeath());
+     }
+ }
  //template
  /*
  public Decision ["NAMEOFDECISION"] (District d) {

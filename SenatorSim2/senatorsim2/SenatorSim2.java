@@ -86,6 +86,14 @@ public class SenatorSim2 extends Application {
     private Button decision6Button;
     @FXML
     private Button decision7Button;
+    @FXML
+    private Button decision8Button;
+    @FXML
+    private Button decision9Button;
+    @FXML
+    private Button decision10Button;
+    @FXML
+    private Button decision11Button;
     //decision screen popup components
     @FXML
     private Pane decisionPopUp;
@@ -233,7 +241,7 @@ public class SenatorSim2 extends Application {
             this.d = createDistrict (districtFlag);
             
             //let's make the array of decisions
-            this.decisionArray = new Decision[8];
+            this.decisionArray = new Decision[12];
             //okay, let's hardcode 4 decisions in that array
             
             this.decisionArray[0] = df.vaccination(d);
@@ -244,6 +252,10 @@ public class SenatorSim2 extends Application {
             this.decisionArray[5] = df.schoolTalk(d);
             this.decisionArray[6] = df.merchantInvestigation(d);
             this.decisionArray[7] = df.ratInfestation(d);
+            this.decisionArray[8] = df.publicTransportation(d);
+            this.decisionArray[9] = df.serialKiller(d);
+            this.decisionArray[10] = df.riot(d);
+            this.decisionArray[11] = df.stocks(d);
             
             //load the next scene
             this.loadScene(e, "DistrictStatusScreen.fxml");
@@ -282,6 +294,10 @@ public class SenatorSim2 extends Application {
             if(whatDecision == 1)
             {
             this.loadScene(e, "DecisionScreen1.fxml");    
+            }
+            if(whatDecision == 2)
+            {
+            this.loadScene(e, "DecisionScreen2.fxml");    
             }
         }
         
@@ -369,7 +385,7 @@ public class SenatorSim2 extends Application {
             updateDecisionPopup(this.decisionArray[4]);
             this.decisionIndex = 4;
             System.out.println("Setting popup to be visible");
-            whatDecision = 1;
+            whatDecision = 2;
             decisionPopUp.setVisible(true);
         }
           if (e.getSource() == decision5Button) {
@@ -377,7 +393,7 @@ public class SenatorSim2 extends Application {
             updateDecisionPopup(this.decisionArray[5]);
             this.decisionIndex = 5;
             System.out.println("Setting popup to be visible");
-            whatDecision = 1;
+            whatDecision = 2;
             decisionPopUp.setVisible(true);
         }
           if (e.getSource() == decision6Button) {
@@ -385,13 +401,45 @@ public class SenatorSim2 extends Application {
             updateDecisionPopup(this.decisionArray[6]);
             this.decisionIndex = 6;
             System.out.println("Setting popup to be visible");
-            whatDecision = 1;
+            whatDecision = 2;
             decisionPopUp.setVisible(true);
         }
           if (e.getSource() == decision7Button) {
             System.out.println("Decision 7 clicked");
             updateDecisionPopup(this.decisionArray[7]);
             this.decisionIndex = 7;
+            System.out.println("Setting popup to be visible");
+            whatDecision = 2;
+            decisionPopUp.setVisible(true);
+        }
+          if (e.getSource() == decision8Button) {
+            System.out.println("Decision 8 clicked");
+            updateDecisionPopup(this.decisionArray[8]);
+            this.decisionIndex = 8;
+            System.out.println("Setting popup to be visible");
+            whatDecision = 1;
+            decisionPopUp.setVisible(true);
+        }
+           if (e.getSource() == decision9Button) {
+            System.out.println("Decision 9 clicked");
+            updateDecisionPopup(this.decisionArray[9]);
+            this.decisionIndex = 9;
+            System.out.println("Setting popup to be visible");
+            whatDecision = 1;
+            decisionPopUp.setVisible(true);
+        }
+            if (e.getSource() == decision10Button) {
+            System.out.println("Decision 10 clicked");
+            updateDecisionPopup(this.decisionArray[10]);
+            this.decisionIndex = 10;
+            System.out.println("Setting popup to be visible");
+            whatDecision = 1;
+            decisionPopUp.setVisible(true);
+        }
+             if (e.getSource() == decision11Button) {
+            System.out.println("Decision 11 clicked");
+            updateDecisionPopup(this.decisionArray[11]);
+            this.decisionIndex = 11;
             System.out.println("Setting popup to be visible");
             whatDecision = 1;
             decisionPopUp.setVisible(true);
