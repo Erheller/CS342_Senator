@@ -29,7 +29,7 @@
       </BorderPane>
       <VBox layoutX="155.0" layoutY="152.0" prefHeight="424.0" prefWidth="500.0" spacing="40.0" AnchorPane.bottomAnchor="24.0">
          <children>
-            <Button fx:id="decision4Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked1" prefHeight="68.0" prefWidth="500.0" text="Commerce" textAlignment="CENTER">
+            <Button fx:id="decision4Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="Commerce" textAlignment="CENTER">
                <font>
                   <Font name="Menlo Regular" size="36.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="decision5Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked1" prefHeight="68.0" prefWidth="500.0" text="Population" textAlignment="CENTER">
+            <Button fx:id="decision5Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="Population" textAlignment="CENTER">
                <font>
                   <Font name="Menlo Regular" size="36.0" />
                </font>
@@ -45,12 +45,12 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="decision6Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked1" prefHeight="68.0" prefWidth="500.0" text="Personal" textAlignment="CENTER">
+            <Button fx:id="decision6Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="Personal" textAlignment="CENTER">
                <font>
                   <Font name="Menlo Regular" size="36.0" />
                </font>
             </Button>
-            <Button fx:id="decision7Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked1" prefHeight="68.0" prefWidth="500.0" text="Population2" textAlignment="CENTER">
+            <Button fx:id="decision7Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="Population2" textAlignment="CENTER">
                <font>
                   <Font name="Menlo Regular" size="36.0" />
                </font>

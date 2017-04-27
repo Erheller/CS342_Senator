@@ -13,7 +13,7 @@
    <children>
       <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="800.0" AnchorPane.topAnchor="10.0">
          <center>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day X" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <Text fx:id="dayTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Day X" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
@@ -29,7 +29,7 @@
       </BorderPane>
       <VBox layoutX="155.0" layoutY="152.0" prefHeight="424.0" prefWidth="500.0" spacing="40.0" AnchorPane.bottomAnchor="24.0">
          <children>
-            <Button fx:id="decision0Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="Population" textAlignment="CENTER">
+            <Button fx:id="decision0Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" textAlignment="CENTER">
                <font>
                   <Font name="Menlo Regular" size="36.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="decision1Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="Infrastructure" textAlignment="CENTER">
+            <Button fx:id="decision1Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" textAlignment="CENTER">
                <font>
                   <Font name="Menlo Regular" size="36.0" />
                </font>
@@ -45,12 +45,12 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="decision2Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="End it All" textAlignment="CENTER">
+            <Button fx:id="decision2Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" textAlignment="CENTER">
                <font>
                   <Font name="Menlo Regular" size="36.0" />
                </font>
             </Button>
-            <Button fx:id="decision3Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" text="Commerce" textAlignment="CENTER">
+            <Button fx:id="decision3Button" mnemonicParsing="false" onAction="#decisionScreenButtonClicked" prefHeight="68.0" prefWidth="500.0" textAlignment="CENTER">
                <font>
                   <Font name="Menlo Regular" size="36.0" />
                </font>
