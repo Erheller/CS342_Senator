@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="60.0" layoutY="72.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To continue pick a district you would like to represent as a Senator " textAlignment="CENTER" wrappingWidth="373.13671875">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <stroke>
+            <RadialGradient centerX="0.5" centerY="0.5" cycleMethod="REFLECT" radius="0.5">
+               <stops>
+                  <Stop color="#900404" />
+                  <Stop color="#f502bc" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </stroke>
+      </Text>
+      <Button fx:id="gotit1" layoutX="202.0" layoutY="143.0" mnemonicParsing="false" onAction="#districtSelectButtonClicked" prefHeight="30.0" prefWidth="71.0" text="Got it">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+   </children>
+   <effect>
+      <Lighting>
+         <bumpInput>
+            <Shadow />
+         </bumpInput>
+         <light>
+            <Light.Distant />
+         </light>
+      </Lighting>
+   </effect>
+</AnchorPane>

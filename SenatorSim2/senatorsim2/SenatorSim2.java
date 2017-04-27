@@ -69,6 +69,7 @@ public class SenatorSim2 extends Application {
     @FXML
     private Button toDecisionScreen;
     
+    
     //decision screen components
     @FXML
     private Button decision0Button;
@@ -80,24 +81,19 @@ public class SenatorSim2 extends Application {
     private Button decision3Button;
     @FXML
     private Text dayTitle;
-   /* @FXML
-    private Button decision4Button;
+    @FXML 
+    private Button help;
+    @FXML 
+    private Button gotit;
+    @FXML 
+    private Button helpbut1;
     @FXML
-    private Button decision5Button;
+    private Button gotit1;
     @FXML
-    private Button decision6Button;
-    @FXML
-    private Button decision7Button;
-    @FXML
-    private Button decision8Button;
-    @FXML
-    private Button decision9Button;
-    @FXML
-    private Button decision10Button;
-    @FXML
-    private Button decision11Button;*/
-    
-    //decision screen popup components
+    private Button helpbut2;
+    @FXML 
+    private Button gotit2;
+   
     @FXML
     private Pane decisionPopUp;
     @FXML
@@ -224,6 +220,8 @@ public class SenatorSim2 extends Application {
         }
     }
     
+   
+    
     public void senatorSelectButtonClicked (ActionEvent e) throws Exception{
         //go to titleScreen
         if (e.getSource() == toTitleScreen) {
@@ -232,9 +230,16 @@ public class SenatorSim2 extends Application {
         else if (e.getSource() == toDistrictSelectScreen) {
             this.loadScene(e, "DistrictSelectScreen.fxml");
         }
+        else if (e.getSource() == help) {
+        this.loadScene( e, "helpscreen1.fxml");
+        }
+         else if (e.getSource() == gotit) {
+        this.loadScene( e, "SenatorSelectScreen.fxml");
+        }
+        
     }
     
-    public void selectSenator (ActionEvent e) {
+    public void selectSenator (ActionEvent e)  {
         if (e.getSource() == selectDem) {
             //set affiliation
             System.out.println("Democrat selected");
@@ -251,8 +256,10 @@ public class SenatorSim2 extends Application {
             System.out.println("Independent selected");
             this.senatorFlag = senatorAffiliation.IND;            
             toDistrictSelectScreen.setDisable(false);
-        }  
+        } 
+        
     }
+    
     
     
         public void districtSelectButtonClicked (ActionEvent e) throws Exception{
@@ -290,6 +297,11 @@ public class SenatorSim2 extends Application {
             
             
         }
+        else if(e.getSource() == helpbut1)
+        { this.loadScene( e, "helpscreen2.fxml");}
+        else if(e.getSource() == gotit1)
+        { this.loadScene( e, "DistrictSelectScreen.fxml");}
+        
     }
     
     public void selectDistrict (ActionEvent e) {
@@ -338,7 +350,12 @@ public class SenatorSim2 extends Application {
            // this.loadScene(e, "DecisionScreen2.fxml");    
           //  }
         }
-        
+        else if (e.getSource() == helpbut2) {
+        this.loadScene( e, "helpscreen3.fxml");
+        }
+         else if (e.getSource() == gotit2) {
+        this.loadScene( e, "DistrictStatusScreen.fxml");
+        }
     }
     
     public String getStringFromCat (Category cat) {
