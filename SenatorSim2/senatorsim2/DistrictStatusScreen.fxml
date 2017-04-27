@@ -17,14 +17,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="766.0" pickOnBounds="true">
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
             <Image url="@images/demog.jpg" />
          </image>
       </ImageView>
       <BorderPane prefHeight="100.0" prefWidth="800.0">
          <center>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="District Demographics" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <Text fill="#b2adad" strokeType="OUTSIDE" strokeWidth="0.0" text="District Demographics" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
@@ -43,44 +43,44 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="District Name:" textAlignment="RIGHT" wrappingWidth="381.54150390625">
+            <Text fill="#e1d5d5" strokeType="OUTSIDE" strokeWidth="0.0" text="District Name:" textAlignment="RIGHT" wrappingWidth="381.54150390625">
                <font>
-                  <Font name="Chalkduster" size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Population:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="1">
+            <Text fill="#e1d5d5" strokeType="OUTSIDE" strokeWidth="0.0" text="Population:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="1">
                <font>
-                  <Font name="Chalkduster" size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Death Rate:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="2">
+            <Text fill="#e1d5d5" strokeType="OUTSIDE" strokeWidth="0.0" text="Death Rate:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="2">
                <font>
-                  <Font name="Chalkduster" size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Budget:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="3">
+            <Text fill="#e1d5d5" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="3">
                <font>
-                  <Font name="Chalkduster" size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="textDistrictName" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1">
+            <Text fx:id="textDistrictName" fill="#e1d5d5" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1">
                <font>
-                  <Font name="Chalkduster" size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="textPopulation" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Text fx:id="textPopulation" fill="#e1d5d5" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font name="Chalkduster" size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="textDeathRate" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Text fx:id="textDeathRate" fill="#e1d5d5" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font name="Chalkduster" size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="textBudget" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="textBudget" fill="#e1d5d5" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
-                  <Font name="Chalkduster" size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
          </children>

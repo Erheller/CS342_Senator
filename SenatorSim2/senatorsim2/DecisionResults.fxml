@@ -1,43 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <ImageView fitHeight="611.0" fitWidth="831.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/confirm.jpg" />
+         </image>
+      </ImageView>
       <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="800.0" AnchorPane.topAnchor="10.0">
-         <center>
-            <Text fx:id="dayTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Day X" textAlignment="CENTER" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="48.0" />
-               </font>
-            </Text>
-         </center>
          <bottom>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Results:" textAlignment="CENTER" wrappingWidth="368.0625" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.3142857142857143" radius="0.5">
+                     <stops>
+                        <Stop color="#d0138e" />
+                        <Stop color="#e81515" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </fill>
             </Text>
          </bottom>
+         <top>
+            <Text fx:id="dayTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Day X" textAlignment="CENTER" wrappingWidth="209.7421875" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.3142857142857143" radius="0.5">
+                     <stops>
+                        <Stop color="#d0138e" />
+                        <Stop color="#e81515" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Text>
+         </top>
       </BorderPane>
-      <VBox layoutX="155.0" layoutY="152.0" prefHeight="424.0" prefWidth="500.0" spacing="40.0" AnchorPane.bottomAnchor="24.0">
+      <VBox layoutX="155.0" layoutY="152.0" prefHeight="378.0" prefWidth="510.0" spacing="40.0" AnchorPane.bottomAnchor="24.0">
          <children>
             <Text fx:id="decisionResult" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" textAlignment="CENTER" wrappingWidth="509.0625">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.3142857142857143" radius="0.5">
+                     <stops>
+                        <Stop color="#d0138e" />
+                        <Stop color="#e81515" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </fill>
             </Text>
             <Button fx:id="resultDone" mnemonicParsing="false" onAction="#decisionResultButtonClicked" prefHeight="77.0" prefWidth="514.0" text="Confirm" textAlignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </Button>
          </children></VBox>
       <Pane fx:id="decisionPopUp" layoutX="105.0" layoutY="50.0" prefHeight="450.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.topAnchor="50.0">

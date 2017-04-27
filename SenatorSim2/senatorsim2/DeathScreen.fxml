@@ -11,8 +11,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -37,129 +35,57 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="       District Name:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="1">
+            <Text fill="#f5e6e6" strokeType="OUTSIDE" strokeWidth="0.0" text="       District Name:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="1">
                <font>
                   <Font name="Chalkduster" size="36.0" />
                </font>
-               <fill>
-                  <RadialGradient centerX="0.5" centerY="0.5" cycleMethod="REPEAT" focusAngle="140.71" focusDistance="-0.2790697674418605" radius="0.3953488372093023">
-                     <stops>
-                        <Stop color="#8a0202" />
-                        <Stop color="#ffbe08" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </fill>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="End Population:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="2">
+            <Text fill="#f5e6e6" strokeType="OUTSIDE" strokeWidth="0.0" text="End Population:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="2">
                <font>
                   <Font name="Chalkduster" size="36.0" />
                </font>
-               <fill>
-                  <RadialGradient centerX="0.5" centerY="0.5" cycleMethod="REPEAT" focusAngle="140.71" focusDistance="-0.2790697674418605" radius="0.3953488372093023">
-                     <stops>
-                        <Stop color="#8a0202" />
-                        <Stop color="#ffbe08" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </fill>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="End Death Rate:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="3">
+            <Text fill="#f5e6e6" strokeType="OUTSIDE" strokeWidth="0.0" text="End Death Rate:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="3">
                <font>
                   <Font name="Chalkduster" size="36.0" />
                </font>
-               <fill>
-                  <RadialGradient centerX="0.5" centerY="0.5" cycleMethod="REPEAT" focusAngle="140.71" focusDistance="-0.2790697674418605" radius="0.3953488372093023">
-                     <stops>
-                        <Stop color="#8a0202" />
-                        <Stop color="#ffbe08" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </fill>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="End Budget:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="4">
+            <Text fill="#f5e6e6" strokeType="OUTSIDE" strokeWidth="0.0" text="End Budget:" textAlignment="RIGHT" wrappingWidth="381.54150390625" GridPane.rowIndex="4">
                <font>
                   <Font name="Chalkduster" size="36.0" />
                </font>
-               <fill>
-                  <RadialGradient centerX="0.5" centerY="0.5" cycleMethod="REPEAT" focusAngle="140.71" focusDistance="-0.2790697674418605" radius="0.3953488372093023">
-                     <stops>
-                        <Stop color="#8a0202" />
-                        <Stop color="#ffbe08" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </fill>
             </Text>
-            <Text fx:id="textDistrictName" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Text fx:id="textDistrictName" fill="#f5e6e6" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Chalkduster" size="36.0" />
                </font>
-               <fill>
-                  <RadialGradient centerX="0.5" centerY="0.5" cycleMethod="REPEAT" focusAngle="140.71" focusDistance="-0.2790697674418605" radius="0.3953488372093023">
-                     <stops>
-                        <Stop color="#8a0202" />
-                        <Stop color="#ffbe08" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </fill>
             </Text>
-            <Text fx:id="textPopulation" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Text fx:id="textPopulation" fill="#f5e6e6" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Chalkduster" size="36.0" />
                </font>
-               <fill>
-                  <RadialGradient centerX="0.5" centerY="0.5" cycleMethod="REPEAT" focusAngle="140.71" focusDistance="-0.2790697674418605" radius="0.3953488372093023">
-                     <stops>
-                        <Stop color="#8a0202" />
-                        <Stop color="#ffbe08" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </fill>
             </Text>
-            <Text fx:id="textDeathRate" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="textDeathRate" fill="#f5e6e6" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Chalkduster" size="36.0" />
                </font>
-               <fill>
-                  <RadialGradient centerX="0.5" centerY="0.49523809523809526" cycleMethod="REPEAT" focusAngle="140.71" focusDistance="-0.2790697674418605" radius="0.3953488372093023">
-                     <stops>
-                        <Stop color="#8a0202" />
-                        <Stop color="#ffbe08" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </fill>
             </Text>
-            <Text fx:id="textBudget" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Text fx:id="textBudget" fill="#f5e6e6" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="381.54150390625" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Chalkduster" size="36.0" />
                </font>
-               <fill>
-                  <RadialGradient centerX="0.5" centerY="0.5" cycleMethod="REPEAT" focusAngle="140.71" focusDistance="-0.2790697674418605" radius="0.3953488372093023">
-                     <stops>
-                        <Stop color="#8a0202" />
-                        <Stop color="#ffbe08" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </fill>
             </Text>
          </children>
       </GridPane>
       <BorderPane layoutX="150.0" layoutY="510.0" prefHeight="69.0" prefWidth="500.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
          <center>
-            <Button fx:id="toTitleScreen" mnemonicParsing="false" onAction="#senatorSelectButtonClicked" prefHeight="100.0" prefWidth="161.0" text="Exit to Main Menu" textOverrun="WORD_ELLIPSIS" BorderPane.alignment="CENTER">
+            <Button fx:id="toTitleScreen" mnemonicParsing="false" onAction="#senatorSelectButtonClicked" prefHeight="100.0" prefWidth="161.0" text="Exit to Main Menu" textFill="#222121" textOverrun="WORD_ELLIPSIS" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
-               <textFill>
-                  <RadialGradient centerX="0.5388888888888889" centerY="0.5285714285714286" radius="0.5">
-                     <stops>
-                        <Stop color="#bce00b" />
-                        <Stop color="#d9072b" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </textFill>
                <effect>
                   <Lighting bumpInput="$null">
                      <light>
@@ -170,31 +96,15 @@
             </Button>
          </center>
       </BorderPane>
-      <Text layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Days:" textAlignment="RIGHT" wrappingWidth="381.54150390625">
+      <Text fill="#f2e6e4" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Days:" textAlignment="RIGHT" wrappingWidth="381.54150390625">
          <font>
             <Font name="Chalkduster" size="36.0" />
          </font>
-         <fill>
-            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-               <stops>
-                  <Stop color="#bce00b" />
-                  <Stop color="#f52d0a" offset="1.0" />
-               </stops>
-            </RadialGradient>
-         </fill>
       </Text>
-      <Text fx:id="dayTitle" layoutX="400.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="358.54150390625">
+      <Text fx:id="dayTitle" fill="#f2e6e4" layoutX="400.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     Blarg" wrappingWidth="358.54150390625">
          <font>
             <Font name="Chalkduster" size="36.0" />
          </font>
-         <fill>
-            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-               <stops>
-                  <Stop color="#bce00b" />
-                  <Stop color="#f52d0a" offset="1.0" />
-               </stops>
-            </RadialGradient>
-         </fill>
       </Text>
    </children>
 </AnchorPane>
