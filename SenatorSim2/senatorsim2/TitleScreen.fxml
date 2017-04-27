@@ -13,7 +13,7 @@
       <HBox layoutX="100.0" layoutY="395.0" prefHeight="74.0" prefWidth="600.0" spacing="40.0" AnchorPane.bottomAnchor="100.0">
          <children>
             <Button fx:id="toSenatorSelectScreen" mnemonicParsing="false" onAction="#titleScreenButtonClicked" prefHeight="74.0" prefWidth="120.0" text="New Game" />
-            <Button fx:id="loadGame" mnemonicParsing="false" onAction="#titleScreenButtonClicked" prefHeight="74.0" prefWidth="120.0" text="Load Game" />
+            <Button fx:id="loadGame" disable="true" mnemonicParsing="false" onAction="#titleScreenButtonClicked" prefHeight="74.0" prefWidth="120.0" text="Load Game" />
             <Button fx:id="options" mnemonicParsing="false" onAction="#titleScreenButtonClicked" prefHeight="74.0" prefWidth="120.0" text="Options" />
             <Button fx:id="exitToDesktop" mnemonicParsing="false" onAction="#titleScreenButtonClicked" prefHeight="74.0" prefWidth="120.0" text="Exit to Desktop" />
          </children>

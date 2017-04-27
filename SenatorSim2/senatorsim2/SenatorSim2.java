@@ -182,6 +182,18 @@ public class SenatorSim2 extends Application {
         if (sceneName == "DistrictStatusScreen.fxml") {
             this.updateDemographicScreen();                
         }
+        
+        //if the scene is the title screen, decide whether to enable or disable the load button
+        if (sceneName == "TitleScreen.fxml") {
+            if (this.dayCounter >= 1) {
+                //enable
+                loadGame.setDisable(false);
+            }
+            else {
+                //disable
+                loadGame.setDisable(true);
+            }
+        }
     }
     
     public void titleScreenButtonClicked (ActionEvent e) throws Exception{
