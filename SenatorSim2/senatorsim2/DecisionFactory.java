@@ -366,7 +366,7 @@ public class DecisionFactory {
         public void AcceptDecision(District d) {
             d.updateDeath(d.getDeath() - 20);
             if (d.getDeath() <= 0) {
-                d.getDeath = 0;
+                d.updateDeath(0);
             }
         }
         //[DOCUMENTATION]
@@ -443,7 +443,7 @@ public class DecisionFactory {
     class dSewer implements Behavior {
         //[DOCUMENTATION]
         public void AcceptDecision(District d) {
-            d.updateBudget(d.getBudget - 20000);
+            d.updateBudget(d.getBudget() - 20000);
         }
         //[DOCUMENTATION]
         public void IgnoreDecision(District d) {
