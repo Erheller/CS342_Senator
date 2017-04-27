@@ -299,6 +299,158 @@ public class DecisionFactory {
           d.updatePop(d.getPop() - d.getDeath());
      }
  }
+    
+    
+    
+    public Decision powerPlant (District d) {
+        //2 decisions
+        String descString = "The electric company has informed you that one of their generators is failing, which will leave a quarter of your district without power.";
+        String[] decisionDescString = packageStrings (
+                                                      "Invest in a new power generator.",
+                                                      "Will your home have power? Yes? Carry on.");
+        String[] outcomeDescString = packageStrings (
+                                                     "A new generator is procured, and the citizens continue on their daily lives.",
+                                                     "Power is out for a week. People can't open their garage door to go to work. Kids can't watch TV. Grandparents fall down stairs.");
+        return new Decision(new dPowerPlant(), Category.Commerce, descString, 2, decisionDescString, outcomeDescString, d);
+    }
+    class dPowerPlant implements Behavior {
+        //[DOCUMENTATION]
+        public void AcceptDecision(District d) {
+            d.updateBudget(d.getBudget() - 300000);
+        }
+        //[DOCUMENTATION]
+        public void IgnoreDecision(District d) {
+            d.updateDeath(d.getDeath() + 200);
+            d.updatePop(d.getPop() - d.getDeath());
+        }
+    }
+    
+    
+    
+    public Decision team (District d) {
+        //2 decisions
+        String descString = "A local baseball player suggests making a district baseball team.";
+        String[] decisionDescString = packageStrings (
+                                                      "Yes! This could attract new people and investors.",
+                                                      "I don't like baseball.");
+        String[] outcomeDescString = packageStrings (
+                                                     "Investing in the sports team takes more money than you initially expected, but some new people move to the district.",
+                                                     "Oh. Okay.");
+        return new Decision(new dTeam(), Category.Commerce, descString, 2, decisionDescString, outcomeDescString, d);
+    }
+    class dTeam implements Behavior {
+        //[DOCUMENTATION]
+        public void AcceptDecision(District d) {
+            d.updatePop(d.getPop() + 100);
+        }
+        //[DOCUMENTATION]
+        public void IgnoreDecision(District d) {
+            
+        }
+    }
+    
+    
+    public Decision hospital (District d) {
+        //2 decisions
+        String descString = "The local hospital requests additional funding for new equipment.";
+        String[] decisionDescString = packageStrings (
+                                                      "Grant the funds. It's important that people stay healthy.",
+                                                      "Ignore the hospital and make a public service announcement to encourage the populace to eat more apples.");
+        String[] outcomeDescString = packageStrings (
+                                                     "The hospital puts the funds to good use, lowering the number of deaths in the district.",
+                                                     "The hospital is unable to adequately care for patients. Also, apple sales do not rise.");
+        return new Decision(new dHospital(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
+    }
+    class dHospital implements Behavior {
+        //[DOCUMENTATION]
+        public void AcceptDecision(District d) {
+            d.updateDeath(d.getDeath() - 20);
+            if (d.getDeath() <= 0) {
+                d.getDeath = 0;
+            }
+        }
+        //[DOCUMENTATION]
+        public void IgnoreDecision(District d) {
+            d.updateDeath(d.getDeath() + 10);
+        }
+    }
+    
+    
+    
+    
+    
+    public Decision internet (District d) {
+        //2 decisions
+        String descString = "A new internet service provider offers to install optic fiber cables in your district for a price. The current ISP offers you a wad of cash to reject the offer.";
+        String[] decisionDescString = packageStrings (
+                                                      "Invest in the optic fiber cables. It's important that people can access the internet.",
+                                                      "Money is worth more than people's ability to check their Facebook.");
+        String[] outcomeDescString = packageStrings (
+                                                     "The cables are successfully installed.",
+                                                     "Nothing happens, except that you're a little richer than before.");
+        return new Decision(new dInternet(), Category.Infrastructure, descString, 2, decisionDescString, outcomeDescString, d);
+    }
+    class dInternet implements Behavior {
+        //[DOCUMENTATION]
+        public void AcceptDecision(District d) {
+            d.updateBudget(d.getBudget() - 200000);
+        }
+        //[DOCUMENTATION]
+        public void IgnoreDecision(District d) {
+            d.updateBudget(d.getBudget() + 100000);
+        }
+    }
+    
+    
+    
+    
+    public Decision heat (District d) {
+        //2 decisions
+        String descString = "There's a heat wave in your district!";
+        String[] decisionDescString = packageStrings (
+                                                      "Have emergency services distribute water and check on the elderly.",
+                                                      "Do nothing. Save money.");
+        String[] outcomeDescString = packageStrings (
+                                                     "The EMT's undoubtedly save several lives.",
+                                                     "People die from the heat.");
+        return new Decision(new dHeat(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
+    }
+    class dHeat implements Behavior {
+        //[DOCUMENTATION]
+        public void AcceptDecision(District d) {
+            d.updateDeath(d.getDeath() - 10);
+        }
+        //[DOCUMENTATION]
+        public void IgnoreDecision(District d) {
+            d.updateDeath(d.getDeath() + 30);
+        }
+    }
+    
+    
+    
+    
+    public Decision sewer (District d) {
+        //2 decisions
+        String descString = "The sewers have been unusually smelly for the past few days. Residents complain.";
+        String[] decisionDescString = packageStrings (
+                                                      "Send inspectors to the sewers.",
+                                                      "You don't have the money. Ignore the residents.");
+        String[] outcomeDescString = packageStrings (
+                                                     "There was a gas leak in the sewers, which could have caused an explosion. Fortunately, the inspectors repaired it.",
+                                                     "Several days later, an explosion occurs in town. Several people are badly injured and later die in the hopsital. It is later determined that the cause was a gas leak in the sewers.");
+        return new Decision(new dSewer(), Category.Population, descString, 2, decisionDescString, outcomeDescString, d);
+    }
+    class dSewer implements Behavior {
+        //[DOCUMENTATION]
+        public void AcceptDecision(District d) {
+            d.updateBudget(d.getBudget - 20000);
+        }
+        //[DOCUMENTATION]
+        public void IgnoreDecision(District d) {
+            d.updatePop(d.getPop() - 5);
+        }
+    }
+            
  //template
  /*
  public Decision ["NAMEOFDECISION"] (District d) {
