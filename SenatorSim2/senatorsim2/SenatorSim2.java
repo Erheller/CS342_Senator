@@ -193,6 +193,9 @@ public class SenatorSim2 extends Application {
         }
         else if (e.getSource() == loadGame) {
             System.out.println("Loading game");
+            if (this.dayCounter >= 1) {
+                this.loadScene(e, "DistrictStatusScreen.fxml");
+            }
         }
         else if (e.getSource() == options) {
             System.out.println("This is the options menu");
