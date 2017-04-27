@@ -124,11 +124,18 @@ public class SenatorSim2 extends Application {
     //decision array
     Decision [] decisionArray;
     DecisionFactory df = new DecisionFactory();
+    //DecisionResults 
+    @FXML
+    private Text decisionResult;
+    @FXML
+    private Button resultDone;
+    
     //int whatDecision = 0;
     int decisionIndex;
     int decisionCase = 0; //Used to figure out which decisions are gone through
     int dayCounter = 0; //Used to increment days
     String decisionTitle = "";
+    String resultText = "";
     
     @Override
     public void start(Stage newStage) throws Exception {
@@ -464,7 +471,7 @@ public class SenatorSim2 extends Application {
             decisionPopUp.setVisible(true);
         }*/
         
-        
+      
         //popup buttons
         else if (e.getSource() == decisionReturn) {
             System.out.println("Setting popup to be invisible");
@@ -476,11 +483,18 @@ public class SenatorSim2 extends Application {
             this.decisionArray[this.decisionIndex].behavior.AcceptDecision(d);
             decisionFlag = 1;
             
+            this.loadScene(e, "DecisionResults.fxml");
+            resultText = this.decisionArray[this.decisionIndex].getOutcomeDesc(0);
+            //resultText.setFont(Font.font ("Verdana", 20));
+            decisionResult.setText(resultText); 
+            dayTitle.setText("Day " + Integer.toString(dayCounter));
             this.decisionArray[this.decisionIndex] = newDecision(decisionCase);
             decisionCase++;
             dayCounter++;
+            
             //return to the demographics screen
-            this.loadScene(e, "DistrictStatusScreen.fxml");
+            //this.loadScene(e, "DistrictStatusScreen.fxml");
+            
         }
         else if (e.getSource() == decisionAction1) {
             //do the action
@@ -488,11 +502,17 @@ public class SenatorSim2 extends Application {
             this.decisionArray[this.decisionIndex].behavior.IgnoreDecision(d);
             decisionFlag = 1;
         
+            
+            this.loadScene(e, "DecisionResults.fxml");
+            resultText = this.decisionArray[this.decisionIndex].getOutcomeDesc(1);
+            decisionResult.setText(resultText); 
+            dayTitle.setText("Day " + Integer.toString(dayCounter));
             this.decisionArray[this.decisionIndex] = newDecision(decisionCase);
             decisionCase++;
             dayCounter++;
+            
             //return to the demographics screen
-            this.loadScene(e, "DistrictStatusScreen.fxml");
+            //this.loadScene(e, "DistrictStatusScreen.fxml");
         }
     }
     
@@ -525,9 +545,11 @@ public class SenatorSim2 extends Application {
         decisionAction1.setText(dec.getdecisionDesc(1));
         
     } 
+    public void decisionResultButtonClicked (ActionEvent e) throws Exception {
+       this.loadScene(e, "DistrictStatusScreen.fxml");
+    }
     
-    
-    
+   
     /*
     * Methods for creating districts
     */

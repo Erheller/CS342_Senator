@@ -69,6 +69,10 @@ public class Decision
         this.numDecisions = newNumber;
         this.outcomeDesc = newDescription;
     }    
+    public String getOutcomeDesc(int i){
+        return this.outcomeDesc[i];
+    }
+    
     public void setDistrict (District newD) {
         this.d = newD;
     }

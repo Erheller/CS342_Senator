@@ -20,14 +20,26 @@
             </Text>
          </center>
          <bottom>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Make a Decision" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Results:" textAlignment="CENTER" wrappingWidth="368.0625" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
             </Text>
          </bottom>
       </BorderPane>
-      <VBox layoutX="155.0" layoutY="152.0" prefHeight="424.0" prefWidth="500.0" spacing="40.0" AnchorPane.bottomAnchor="24.0" />
+      <VBox layoutX="155.0" layoutY="152.0" prefHeight="424.0" prefWidth="500.0" spacing="40.0" AnchorPane.bottomAnchor="24.0">
+         <children>
+            <Text fx:id="decisionResult" strokeType="OUTSIDE" strokeWidth="0.0" text="Blarg" textAlignment="CENTER" wrappingWidth="509.0625">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
+            <Button fx:id="resultDone" mnemonicParsing="false" onAction="#decisionResultButtonClicked" prefHeight="77.0" prefWidth="514.0" text="Continue" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Button>
+         </children></VBox>
       <Pane fx:id="decisionPopUp" layoutX="105.0" layoutY="50.0" prefHeight="450.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.topAnchor="50.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#aeaeae" height="450.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
@@ -35,7 +47,7 @@
                <children>
                   <Text fx:id="decisionDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="This is the description of the decision the player has to make. Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah" textAlignment="CENTER" wrappingWidth="550.0">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets />
