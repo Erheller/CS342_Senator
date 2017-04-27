@@ -502,13 +502,13 @@ public class SenatorSim2 extends Application {
             
             this.loadScene(e, "DecisionResults.fxml");
             resultText = this.decisionArray[this.decisionIndex].getOutcomeDesc(0);
-            //resultText.setFont(Font.font ("Verdana", 20));
             decisionResult.setText(resultText); 
             dayTitle.setText("Day " + Integer.toString(dayCounter));
             this.decisionArray[this.decisionIndex] = newDecision(decisionCase);
+            if(dayCounter < 15){
             decisionCase++;
             dayCounter++;
-            
+            }
             //return to the demographics screen
             //this.loadScene(e, "DistrictStatusScreen.fxml");
             
@@ -525,9 +525,10 @@ public class SenatorSim2 extends Application {
             decisionResult.setText(resultText); 
             dayTitle.setText("Day " + Integer.toString(dayCounter));
             this.decisionArray[this.decisionIndex] = newDecision(decisionCase);
+            if(dayCounter < 15){
             decisionCase++;
             dayCounter++;
-            
+            }
             //return to the demographics screen
             //this.loadScene(e, "DistrictStatusScreen.fxml");
         }
@@ -565,7 +566,7 @@ public class SenatorSim2 extends Application {
                 return this.decisionArray[this.decisionIndex] = df.sewer(d);
             }
             //return this.decisionArray[this.decisionIndex] = df.stocks(d);
-            return null;
+            return this.decisionArray[this.decisionIndex] = df.sewer(d);
         }
          
     private void updateDecisionPopup (Decision dec) {
@@ -583,8 +584,15 @@ public class SenatorSim2 extends Application {
             textDeathRate.setText(Integer.toString((int)d.getDeath()));
             textBudget.setText(Integer.toString((int)d.getBudget()));
             dayTitle.setText(Integer.toString(dayCounter-1));
-        } else
-       this.loadScene(e, "DistrictStatusScreen.fxml");
+        } else if(dayCounter == 15){
+            this.loadScene(e, "FinishGame.fxml");
+            textDistrictName.setText(d.getName());
+            textPopulation.setText(Integer.toString((int)d.getPop()));
+            textDeathRate.setText(Integer.toString((int)d.getDeath()));
+            textBudget.setText(Integer.toString((int)d.getBudget()));
+            dayTitle.setText(Integer.toString(dayCounter));
+        }
+        else this.loadScene(e, "DistrictStatusScreen.fxml");
     }
     
    

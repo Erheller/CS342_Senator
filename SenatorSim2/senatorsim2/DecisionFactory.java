@@ -198,12 +198,12 @@ public class DecisionFactory {
  class DratInfestation implements Behavior {
   //[DOCUMENTATION]
      public void AcceptDecision(District d) {
-      d.updateBudget(d.getBudget() - 100000);
+      d.updateBudget(d.getBudget() - 10000);
      }
      //[DOCUMENTATION]
      public void IgnoreDecision(District d) {
-      d.updatePop(d.getPop() / 2);
-      d.updateDeath(d.getDeath() + 125000 );
+      d.updatePop(d.getPop() - 2000);
+      d.updateDeath(d.getDeath() + 1200 );
      }
  }
  
@@ -268,7 +268,7 @@ public class DecisionFactory {
  class driot implements Behavior {
   //[DOCUMENTATION]
      public void AcceptDecision(District d) {
-          d.updatePop(d.getPop() - 555394);
+          d.updatePop(d.getPop() - 5594);
      }
      //[DOCUMENTATION]
      public void IgnoreDecision(District d) {
@@ -295,7 +295,7 @@ public class DecisionFactory {
      }
      //[DOCUMENTATION]
      public void IgnoreDecision(District d) {
-          d.updateDeath(d.getDeath() + 335000);
+          d.updateDeath(d.getDeath() + 3000);
           d.updatePop(d.getPop() - d.getDeath());
      }
  }
