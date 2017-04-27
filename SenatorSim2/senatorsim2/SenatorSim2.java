@@ -534,8 +534,21 @@ public class SenatorSim2 extends Application {
                 return this.decisionArray[this.decisionIndex] = df.riot(d);
             case 7:
                 return this.decisionArray[this.decisionIndex] = df.stocks(d);
+            case 8:
+                return this.decisionArray[this.decisionIndex] = df.powerPlant(d);
+            case 9:
+                return this.decisionArray[this.decisionIndex] = df.team(d);
+            case 10:
+                return this.decisionArray[this.decisionIndex] = df.hospital(d);
+            case 11:
+                return this.decisionArray[this.decisionIndex] = df.internet(d);
+            case 12:
+                return this.decisionArray[this.decisionIndex] = df.heat(d);
+            case 13:
+                return this.decisionArray[this.decisionIndex] = df.sewer(d);
             }
-            return this.decisionArray[this.decisionIndex] = df.stocks(d);
+            //return this.decisionArray[this.decisionIndex] = df.stocks(d);
+            return null;
         }
          
     private void updateDecisionPopup (Decision dec) {
@@ -546,6 +559,14 @@ public class SenatorSim2 extends Application {
         
     } 
     public void decisionResultButtonClicked (ActionEvent e) throws Exception {
+        if(d.getPop() <= 0 || d.getBudget() <= 0){
+            this.loadScene(e, "DeathScreen.fxml");
+            textDistrictName.setText(d.getName());
+            textPopulation.setText(Integer.toString((int)d.getPop()));
+            textDeathRate.setText(Integer.toString((int)d.getDeath()));
+            textBudget.setText(Integer.toString((int)d.getBudget()));
+            dayTitle.setText(Integer.toString(dayCounter-1));
+        } else
        this.loadScene(e, "DistrictStatusScreen.fxml");
     }
     

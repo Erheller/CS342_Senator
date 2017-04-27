@@ -34,7 +34,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <Button fx:id="resultDone" mnemonicParsing="false" onAction="#decisionResultButtonClicked" prefHeight="77.0" prefWidth="514.0" text="Continue" textAlignment="CENTER">
+            <Button fx:id="resultDone" mnemonicParsing="false" onAction="#decisionResultButtonClicked" prefHeight="77.0" prefWidth="514.0" text="Confirm" textAlignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
